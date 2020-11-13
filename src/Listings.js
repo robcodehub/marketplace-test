@@ -4,9 +4,20 @@ import axios from 'axios';
 
 import styled from 'styled-components';
 
-export const Grid = styled.div``;
-export const Row = styled.div`
+export const Grid = styled.div`
+
+`;
+
+export const RowEven = styled.div`
   display: flex;
+  padding: 1rem;
+  background-color: #FFF;
+`;
+
+export const RowOdd = styled.div`
+  display: flex;
+  padding: 1rem;
+  background-color: #E8E8E8;
 `;
 
 const media = {
@@ -55,7 +66,7 @@ export const ListingsHome = () => {
 
     <>
     <Grid>
-      <Row>
+      <RowEven>
         <Col size={7}>Listing Number</Col>
         <Col size={7}>Niche</Col>
         <Col size={7}>Monetization</Col>
@@ -63,19 +74,31 @@ export const ListingsHome = () => {
         <Col size={7}>Monthly Net Profit</Col>
         <Col size={7}>Multiple</Col>
         <Col size={7}>Listing Status</Col>
-      </Row>
-      {listings.length > 0 ? listings.map(listing => (
-        <Row>
+      </RowEven>
+      {listings.length > 0 ? listings.map((listing, index) => {
+
+         {return index % 2 === 0 ?
+          <RowEven>
           <Col size={7}>{listing.listing_number}</Col>
           <Col size={7}>{listing.niches[0].niche}</Col>
           <Col size={7}>{listing.monetizations[0].monetization}</Col>
           <Col size={7}>{currencyFormatter.format(listing.listing_price)}</Col>
-          <Col size={7}>{listing.average_monthly_net_profit}</Col>
-          <Col size={7}>{listing.listing_multiple}</Col>
+          <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
+          <Col size={7}>{listing.listing_multiple}x</Col>
           <Col size={7}>{listing.listing_status}</Col>
-        </Row>
-      )):
-      <Row>
+          </RowEven>
+          : <RowOdd>
+          <Col size={7}>{listing.listing_number}</Col>
+          <Col size={7}>{listing.niches[0].niche}</Col>
+          <Col size={7}>{listing.monetizations[0].monetization}</Col>
+          <Col size={7}>{currencyFormatter.format(listing.listing_price)}</Col>
+          <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
+          <Col size={7}>{listing.listing_multiple}x</Col>
+          <Col size={7}>{listing.listing_status}</Col>
+          </RowOdd>
+          }
+        }):
+      <RowEven>
         <Col size={7}>Listing Number</Col>
         <Col size={7}>Niche</Col>
         <Col size={7}>Monetization</Col>
@@ -83,7 +106,7 @@ export const ListingsHome = () => {
         <Col size={7}>Monthly Net Profit</Col>
         <Col size={7}>Multiple</Col>
         <Col size={7}>Listing Status</Col>
-      </Row>
+      </RowEven>
       }
       </Grid>
     </>
