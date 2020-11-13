@@ -54,6 +54,16 @@ export const Grid = styled.div`
 font-family: 'Helvetica';
 `;
 
+export const RowHeadings = styled.div`
+  display: flex;
+  padding: 1rem;
+  background-color: #000;
+  font-family: 'Helvetica';
+  font-size: 1.2em;
+  font-weight: bold;
+  color: ${props => props.color || "#FFF"};
+`;
+
 export const RowEven = styled.div`
   display: flex;
   padding: 1rem;
@@ -62,7 +72,7 @@ export const RowEven = styled.div`
   font-size: 1.2em;
   font-weight: bold;
   color: ${props => props.color || "#000"};
-
+  &:hover {border: 2px solid #005a87; };
 `;
 
 export const RowOdd = styled.div`
@@ -73,6 +83,7 @@ export const RowOdd = styled.div`
   font-size: 1.2em;
   font-weight: bold;
   color: ${props => props.color || "#000"};
+  &:hover {border: 2px solid #005a87; };
 `;
 
 const media = {
@@ -86,6 +97,12 @@ const media = {
 export const Col = styled.div`
 flex: ${(props) => props.size};
 ${(props) => props.collapse && media[props.collapse](`display: none;`)}
+`;
+
+export const ColColored = styled.div`
+flex: ${(props) => props.size};
+${(props) => props.collapse && media[props.collapse](`display: none;`)};
+color: ${props => props.color || "#000"};
 `;
 
 export const ListingsHome = () => {
@@ -130,11 +147,10 @@ export const ListingsHome = () => {
   const BusinessListingRow = ({listing}) => {
 
     return (<>
-
-    <Col size={7}>#{listing.listing_number}</Col>
+    <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}>#{listing.listing_number}</ColColored>
     <Col size={7}>{listing.niches[0].niche}</Col>
     <Col size={7}>{listing.monetizations[0].monetization}</Col>
-    <Col size={7}>{currencyFormatter.format(listing.listing_price)}</Col>
+    <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}>{currencyFormatter.format(listing.listing_price)}</ColColored>
     <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
     <Col size={7}><MultiplePrice>{listing.listing_multiple}x</MultiplePrice></Col>
     <Col size={7}>{
@@ -152,9 +168,9 @@ export const ListingsHome = () => {
 
     <>
     <Grid>
-      <RowEven>
+      <RowHeadings>
         <BusinessHeadings />
-      </RowEven>
+      </RowHeadings>
       {listings.length > 0 ? listings.map((listing, index) => {
 
          {return index % 2 === 0 ?
@@ -177,7 +193,7 @@ export const ListingsHome = () => {
 
   return (
     <div>
-      Listing Home
+      <h2>Listings</h2>
       <ListingsDisplay listings={businessListings} />
     </div>
   );
