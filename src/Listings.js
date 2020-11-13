@@ -2,22 +2,77 @@ import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
+import {BurstSale, BurstNew} from '@styled-icons/foundation'
+
+import {Handshake, CommentsDollar, HandHoldingUsd} from '@styled-icons/fa-solid'
+// import BadgeDollar from '@styled-icons/boxicon-solid'
+// import CommentsDollar from '@styled-icons/fa-solid'
+
+// @styled-icons/fa-solid/Handshake
+// @styled-icons/fa-solid/CommentsDollar
+// @styled-icons/boxicons-solid/BadgeDollar
+//
+
+// const GlobalStyle = createGlobalStyle`
+// font-family: 'Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif'
+// `
+
+const DealIcon = styled(CommentsDollar)`
+height: 2rem;
+width: 2rem;
+
+`
+
+const HandshakeIcon = styled(Handshake)`
+height: 2rem;
+width: 2rem;
+
+`
+
+const SaleIcon = styled(BurstSale)`
+height: 2rem;
+width: 2rem;
+
+`
+
+const MultiplePrice = styled.div`
+border: 1px solid black;
+padding: 0.5em;
+`
+
+const GreyStyle = styled.div`
+color: #848a93;
+`
+
+
+const NewIcon = styled(BurstNew)`
+  color: green;
+`
 
 export const Grid = styled.div`
-
+font-family: 'Helvetica';
 `;
 
 export const RowEven = styled.div`
   display: flex;
   padding: 1rem;
   background-color: #FFF;
+  font-family: 'Helvetica';
+  font-size: 1.2em;
+  font-weight: bold;
+  color: ${props => props.color || "#000"};
+
 `;
 
 export const RowOdd = styled.div`
   display: flex;
   padding: 1rem;
   background-color: #E8E8E8;
+  font-family: 'Helvetica';
+  font-size: 1.2em;
+  font-weight: bold;
+  color: ${props => props.color || "#000"};
 `;
 
 const media = {
@@ -59,6 +114,37 @@ export const ListingsHome = () => {
   });
 
 
+  const BusinessHeadings = () => {
+
+    return (<>
+      <Col size={7}>Listing Number</Col>
+      <Col size={7}>Niche</Col>
+      <Col size={7}>Monetization</Col>
+      <Col size={7}>Price</Col>
+      <Col size={7}>Monthly Net Profit</Col>
+      <Col size={7}>Multiple</Col>
+      <Col size={7}>Listing Status</Col>
+    </>)
+  }
+
+  const BusinessListingRow = ({listing}) => {
+
+    return (<>
+
+    <Col size={7}>#{listing.listing_number}</Col>
+    <Col size={7}>{listing.niches[0].niche}</Col>
+    <Col size={7}>{listing.monetizations[0].monetization}</Col>
+    <Col size={7}>{currencyFormatter.format(listing.listing_price)}</Col>
+    <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
+    <Col size={7}><MultiplePrice>{listing.listing_multiple}x</MultiplePrice></Col>
+    <Col size={7}>{
+    listing.listing_status.toLowerCase() === "new listing" ? <><NewIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "for sale" ? <><SaleIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "pending sold" ? <><DealIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "sold" ? <><HandshakeIcon /> {listing.listing_status} </> :
+    <>{listing.listing_status}</>
+    }</Col>
+    </>)
+  }
+
+
 
   const ListingsDisplay = ({listings}) => (
 
@@ -67,45 +153,22 @@ export const ListingsHome = () => {
     <>
     <Grid>
       <RowEven>
-        <Col size={7}>Listing Number</Col>
-        <Col size={7}>Niche</Col>
-        <Col size={7}>Monetization</Col>
-        <Col size={7}>Price</Col>
-        <Col size={7}>Monthly Net Profit</Col>
-        <Col size={7}>Multiple</Col>
-        <Col size={7}>Listing Status</Col>
+        <BusinessHeadings />
       </RowEven>
       {listings.length > 0 ? listings.map((listing, index) => {
 
          {return index % 2 === 0 ?
-          <RowEven>
-          <Col size={7}>{listing.listing_number}</Col>
-          <Col size={7}>{listing.niches[0].niche}</Col>
-          <Col size={7}>{listing.monetizations[0].monetization}</Col>
-          <Col size={7}>{currencyFormatter.format(listing.listing_price)}</Col>
-          <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
-          <Col size={7}>{listing.listing_multiple}x</Col>
-          <Col size={7}>{listing.listing_status}</Col>
-          </RowEven>
-          : <RowOdd>
-          <Col size={7}>{listing.listing_number}</Col>
-          <Col size={7}>{listing.niches[0].niche}</Col>
-          <Col size={7}>{listing.monetizations[0].monetization}</Col>
-          <Col size={7}>{currencyFormatter.format(listing.listing_price)}</Col>
-          <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
-          <Col size={7}>{listing.listing_multiple}x</Col>
-          <Col size={7}>{listing.listing_status}</Col>
+          <RowEven color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
+              <BusinessListingRow listing={listing} />
+            </RowEven>
+
+          : <RowOdd color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
+          <BusinessListingRow listing={listing} />
           </RowOdd>
           }
         }):
       <RowEven>
-        <Col size={7}>Listing Number</Col>
-        <Col size={7}>Niche</Col>
-        <Col size={7}>Monetization</Col>
-        <Col size={7}>Price</Col>
-        <Col size={7}>Monthly Net Profit</Col>
-        <Col size={7}>Multiple</Col>
-        <Col size={7}>Listing Status</Col>
+        <BusinessHeadings />
       </RowEven>
       }
       </Grid>
