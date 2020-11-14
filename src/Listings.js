@@ -57,11 +57,14 @@ font-family: 'Helvetica';
 export const RowHeadings = styled.div`
   display: flex;
   padding: 1rem;
-  background-color: #000;
+  margin-bottom: 1rem;
+  margin-top: 1.9rem;
+  background-color: #3c79cb;
   font-family: 'Helvetica';
   font-size: 1.2em;
   font-weight: bold;
   color: ${props => props.color || "#FFF"};
+
 `;
 
 export const RowEven = styled.div`
