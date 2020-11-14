@@ -64,7 +64,8 @@ export const RowHeadings = styled.div`
   color: ${props => props.color || "#FFF"};
 `;
 
-export const RowEven = styled.div`
+
+const ListingPreview = styled.div`
   display: flex;
   padding: 1rem;
   background-color: #FFF;
@@ -73,18 +74,8 @@ export const RowEven = styled.div`
   font-weight: bold;
   color: ${props => props.color || "#000"};
   &:hover {border: 2px solid #005a87; };
-`;
+`
 
-export const RowOdd = styled.div`
-  display: flex;
-  padding: 1rem;
-  background-color: #E8E8E8;
-  font-family: 'Helvetica';
-  font-size: 1.2em;
-  font-weight: bold;
-  color: ${props => props.color || "#000"};
-  &:hover {border: 2px solid #005a87; };
-`;
 
 const media = {
   xs: (styles) => `
@@ -105,19 +96,19 @@ ${(props) => props.collapse && media[props.collapse](`display: none;`)};
 color: ${props => props.color || "#000"};
 `;
 
-export const ListingsHome = () => {
-  const [businessListings, setBusinessListings] = useState([]);
+export const NewListings = () => {
+  const [newListings, setNewListings] = useState([]);
 
 
   useEffect(() => {
 
     axios
       .get(
-        'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest'
+        'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings'
       )
       .then((response) => {
 
-         setBusinessListings([...response.data.data.listings]);
+         setNewListings([...response.data.data.listings]);
       })
 
   },[]);
@@ -164,8 +155,6 @@ export const ListingsHome = () => {
 
   const ListingsDisplay = ({listings}) => (
 
-
-
     <>
 
 
@@ -176,18 +165,18 @@ export const ListingsHome = () => {
       {listings.length > 0 ? listings.map((listing, index) => {
 
          {return index % 2 === 0 ?
-          <RowEven color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
+          <ListingPreview color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
               <BusinessListingRow listing={listing} />
-            </RowEven>
+            </ListingPreview>
 
-          : <RowOdd color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
+          : <ListingPreview color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
           <BusinessListingRow listing={listing} />
-          </RowOdd>
+          </ListingPreview>
           }
         }):
-      <RowEven>
+      <ListingPreview>
         <BusinessHeadings />
-      </RowEven>
+      </ListingPreview>
       }
       </Grid>
     </>
@@ -195,8 +184,13 @@ export const ListingsHome = () => {
 
   return (
     <div>
-      <h2>Listings</h2>
-      <ListingsDisplay listings={businessListings} />
+       <div>
+      <h1>Our Latest Listings</h1>
+      <h3>Every Monday we publish new businesses for sale on our marketplace</h3>
+      <div>4 New Listings Published | 70 Listings Total </div>
+
+    </div>
+      <ListingsDisplay listings={newListings} />
     </div>
   );
 };
