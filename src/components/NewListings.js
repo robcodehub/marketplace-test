@@ -18,6 +18,10 @@ import {Handshake, CommentsDollar, HandHoldingUsd} from '@styled-icons/fa-solid'
 // font-family: 'Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif'
 // `
 
+import {ListingsHeader} from './ListingsHeader'
+
+
+
 const DealIcon = styled(CommentsDollar)`
 height: 2rem;
 width: 2rem;
@@ -159,9 +163,7 @@ export const NewListings = () => {
 
 
     <Grid>
-      <RowHeadings>
-        <BusinessHeadings />
-      </RowHeadings>
+    <ListingsHeader />
       {listings.length > 0 ? listings.map((listing, index) => {
 
          {return index % 2 === 0 ?
