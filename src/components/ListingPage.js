@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -7,6 +7,7 @@ import styled, {createGlobalStyle} from 'styled-components';
 import {BurstSale, BurstNew} from '@styled-icons/foundation'
 
 import {Handshake, CommentsDollar, HandHoldingUsd} from '@styled-icons/fa-solid'
+import { ListingsHome } from '../Listings';
 // import BadgeDollar from '@styled-icons/boxicon-solid'
 // import CommentsDollar from '@styled-icons/fa-solid'
 
@@ -107,22 +108,19 @@ export const ColColored = styled.div`
 flex: ${(props) => props.size};
 ${(props) => props.collapse && media[props.collapse](`display: none;`)};
 color: ${props => props.color || "#000"};
-
-a {
-  color: ${props => props.color || "#000"};
-  text-decoration: none;
-}
 `;
 
-export const ListingsHome = () => {
+export const ListingPage = () => {
   const [businessListings, setBusinessListings] = useState([]);
 
-
+  let {id} = useParams();
   useEffect(() => {
+
+
 
     axios
       .get(
-        'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest'
+        `https://cors-anywhere.herokuapp.com/https://api.empireflippers.com/api/v1/listings/list?listing_number=${id}`
       )
       .then((response) => {
 
@@ -140,77 +138,43 @@ export const ListingsHome = () => {
   });
 
 
-  const BusinessHeadings = () => {
-
-    return (<>
-      <Col size={7}>Listing Number</Col>
-      <Col size={7}>Niche</Col>
-      <Col size={7}>Monetization</Col>
-      <Col size={7}>Price</Col>
-      <Col size={7}>Monthly Net Profit</Col>
-      <Col size={7}>Multiple</Col>
-      <Col size={7}>Listing Status</Col>
-    </>)
-  }
-
-  const BusinessListingRow = ({listing}) => {
-
-    return (<>
-
-    <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}><Link to={`/listing/${listing.listing_number}`} >#{listing.listing_number}</Link></ColColored>
-    <Col size={7}>{listing.niches[0].niche}</Col>
-    <Col size={7}>{listing.monetizations[0].monetization}</Col>
-    <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}>{currencyFormatter.format(listing.listing_price)}</ColColored>
-    <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
-    <Col size={7}><MultiplePrice>{listing.listing_multiple}x</MultiplePrice></Col>
-    <Col size={7}>{
-    listing.listing_status.toLowerCase() === "new listing" ? <><NewIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "for sale" ? <><SaleIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "pending sold" ? <><DealIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "sold" ? <><HandshakeIcon /> {listing.listing_status} </> :
-    <>{listing.listing_status}</>
-    }</Col>
-    </>
-
-    )
-  }
 
 
+  const BusinessDetails = ({listings}) => {
 
-  const ListingsDisplay = ({listings}) => (
+    if(listings.length !== 0) {
 
+      const listing = listings[0];
 
+      return (
 
-    <>
+        <>
+        <h1>Listing #{listing.listing_number}</h1>
+        <h2>Status: {
+        listing.listing_status.toLowerCase() === "new listing" ? <><NewIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "for sale" ? <><SaleIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "pending sold" ? <><DealIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "sold" ? <><HandshakeIcon /> {listing.listing_status} </> :
+        <>{listing.listing_status}</>} </h2>
 
+        <h2>Niche: {listing.niches[0].niche}</h2>
+        <h3>Monetization: {listing.monetizations[0].monetization}</h3>
+        <h3>List Price: {currencyFormatter.format(listing.listing_price)}</h3>
+        <h3>{currencyFormatter.format(listing.average_monthly_net_profit)}</h3>
+          <h3>{listing.listing_multiple}x</h3>
+          <h3>Listing Summary</h3>
+        <p>{listing.summary}</p>
+        </>
 
-    <Grid>
-      <RowHeadings>
-        <BusinessHeadings />
-      </RowHeadings>
-      {listings.length > 0 ? listings.map((listing, index) => {
-
-         {return index % 2 === 0 ?
-          <RowEven color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
-
-              <BusinessListingRow listing={listing} />
-
-            </RowEven>
-
-          : <RowOdd color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
-          <BusinessListingRow listing={listing} />
-          </RowOdd>
-          }
-        }):
-      <RowEven>
-        <BusinessHeadings />
-      </RowEven>
+      ) } else {
+        return (
+          <>
+            <h2> Loading business listing....</h2>
+          </>
+        )
       }
-      </Grid>
-    </>
-  );
+}
 
   return (
     <div>
-      <h2>Listings</h2>
-      <ListingsDisplay listings={businessListings} />
+      <BusinessDetails listings={businessListings} />
     </div>
   );
 };

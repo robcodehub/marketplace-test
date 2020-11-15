@@ -87,7 +87,7 @@ export default function NavBar() {
   return (
     <NavBarStyle>
       <MenuItems>
-        <li>Home</li>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="/">Marketplace</Link></li>
         <li><Link to="/newlistings">New Listings </Link></li>
         <li>About Us</li>
