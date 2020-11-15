@@ -1,4 +1,7 @@
 import React from 'react'
+
+import {Link } from 'react-router-dom'
+
 import styled from 'styled-components'
 
 const NavBarStyle = styled.div`
@@ -42,6 +45,13 @@ li {
   text-decoration-color: #f5a622;
   cursor: pointer;
 }
+
+a {
+  &:visited {
+    color: #FFF;
+  }
+}
+
 }
 `;
 
@@ -77,11 +87,11 @@ export default function NavBar() {
   return (
     <NavBarStyle>
       <MenuItems>
-        <li>Home</li>
-        <li>Marketplace</li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/">Marketplace</Link></li>
+        <li><Link to="/newlistings">New Listings </Link></li>
         <li>About Us</li>
         <li>Blog</li>
-        <li>Podcasts</li>
       </MenuItems>
     </NavBarStyle>
   )

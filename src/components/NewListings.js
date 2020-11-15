@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom'
 
 import axios from 'axios';
 
@@ -142,7 +143,7 @@ export const NewListings = () => {
   const BusinessListingRow = ({listing}) => {
 
     return (<>
-    <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}>#{listing.listing_number}</ColColored>
+    <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}><Link to={`/listing/${listing.listing_number}`} >#{listing.listing_number}</Link></ColColored>
     <Col size={7}>{listing.niches[0].niche}</Col>
     <Col size={7}>{listing.monetizations[0].monetization}</Col>
     <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}>{currencyFormatter.format(listing.listing_price)}</ColColored>

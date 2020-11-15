@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -106,6 +107,11 @@ export const ColColored = styled.div`
 flex: ${(props) => props.size};
 ${(props) => props.collapse && media[props.collapse](`display: none;`)};
 color: ${props => props.color || "#000"};
+
+a {
+  color: ${props => props.color || "#000"};
+  text-decoration: none;
+}
 `;
 
 export const ListingsHome = () => {
@@ -150,7 +156,8 @@ export const ListingsHome = () => {
   const BusinessListingRow = ({listing}) => {
 
     return (<>
-    <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}>#{listing.listing_number}</ColColored>
+
+    <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}><Link to={`/listing/${listing.listing_number}`} >#{listing.listing_number}</Link></ColColored>
     <Col size={7}>{listing.niches[0].niche}</Col>
     <Col size={7}>{listing.monetizations[0].monetization}</Col>
     <ColColored size={7} color={listing.listing_status.toLowerCase() === "new listing"? "#f5a622": listing.listing_status.toLowerCase() !== "sold"? "#005a87": "#848a93"}>{currencyFormatter.format(listing.listing_price)}</ColColored>
@@ -160,7 +167,9 @@ export const ListingsHome = () => {
     listing.listing_status.toLowerCase() === "new listing" ? <><NewIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "for sale" ? <><SaleIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "pending sold" ? <><DealIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "sold" ? <><HandshakeIcon /> {listing.listing_status} </> :
     <>{listing.listing_status}</>
     }</Col>
-    </>)
+    </>
+
+    )
   }
 
 
@@ -180,7 +189,9 @@ export const ListingsHome = () => {
 
          {return index % 2 === 0 ?
           <RowEven color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
+
               <BusinessListingRow listing={listing} />
+
             </RowEven>
 
           : <RowOdd color={listing.listing_status.toLowerCase() === 'sold' ? "#848a93": "#000"}>
