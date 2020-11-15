@@ -23,7 +23,7 @@ import { ListingsHome } from '../Listings';
 const LayoutGrid = styled.div`
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
-grid-template-rows: 15% 10% 20% 20%;
+grid-template-rows: 15% 10% 20% 20% 20% 15%;
 margin-top: 5rem;
 `
 
@@ -82,6 +82,27 @@ grid-column-end: span 2;
 `
 
 
+const OtherInfoLeft = styled.div`
+grid-row-start: 5;
+grid-row-end: 5;
+grid-column-start: 1;
+grid-column-end: span 2;
+margin-top: 1rem;
+margin-bottom: 2rem;
+padding-bottom: 2rem;
+`
+
+const OtherInfoRight = styled.div`
+grid-row-start: 5;
+grid-row-end: 5;
+grid-column-start: 3;
+grid-column-end: span 2;
+margin-top: 1rem;
+margin-bottom: 2rem;
+padding-bottom: 2rem;
+`
+
+
 const TrademarkIcon = styled(Trademark)`
 height: 4rem;
 width: 4rem;
@@ -132,6 +153,9 @@ const NewIcon = styled(BurstNew)`
 export const Grid = styled.div`
 font-family: 'Helvetica';
 `;
+
+
+
 
 
 const media = {
