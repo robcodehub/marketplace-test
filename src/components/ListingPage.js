@@ -89,18 +89,21 @@ grid-column-end: span 2;
 
 
 
-const OtherInfoSectionOne = styled.div`
-grid-row-start: 5;
-grid-row-end: 5;
+const OtherInfoSection = styled.div`
+grid-row-start: ${props => props.gridstart || 7};
+grid-row-end: ${props => props.gridend || 7};
 grid-column-start: 1;
 grid-column-end: span 4;
-margin-top: 2rem;
+margin-top: 1rem;
 padding-top: 2rem;
-margin-bottom: 2rem;
+margin-bottom: 1rem;
 padding-bottom: 2rem;
 border-bottom: 1px solid #848a93;
 border-top: 1px solid #848a93;
 `
+
+
+
 
 const SpanWrapper = styled.div`
   border-top: 1px solid #848a93;
@@ -391,6 +394,17 @@ export const ListingPage = () => {
           </ListStyle>
           </SpanWrapper>
           </OtherInfoRight>
+
+          <OtherInfoSection gridstart={6} gridend={6}>
+            <h1>Analytical Data</h1>
+            <h3>Powered by ahrefs</h3>
+            <ButtonTemplate color={"#f5a622"}>Unlock Listing <RightArrowIcon /></ButtonTemplate>
+          </OtherInfoSection>
+          <OtherInfoSection gridstart={7} gridend={7}>
+            <h1>Frequently Asked Questions</h1>
+            <h3>Answered by the Seller</h3>
+            <ButtonTemplate color={"#f5a622"}>Unlock Listing <RightArrowIcon /></ButtonTemplate>
+          </OtherInfoSection>
 
         </LayoutGrid>
         </>
