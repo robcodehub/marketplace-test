@@ -4,23 +4,23 @@ import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
 
 import styled, {createGlobalStyle} from 'styled-components';
-import {BurstSale, BurstNew} from '@styled-icons/foundation';
 
-import {Handshake, CommentsDollar, Trademark, HandHoldingUsd} from '@styled-icons/fa-solid';
-import {RightArrowAlt} from '@styled-icons/boxicons-regular';
+import {ButtonTemplate} from './listingpage/ButtonTemplate';
 
 import { ListingsHome } from '../Listings';
-// import BadgeDollar from '@styled-icons/boxicon-solid'
-// import CommentsDollar from '@styled-icons/fa-solid'
 
-// @styled-icons/fa-solid/Handshake
-// @styled-icons/fa-solid/CommentsDollar
-// @styled-icons/boxicons-solid/BadgeDollar
-//
+import ListingHeader from './listingpage/ListingHeader';
+import UnlockListing from './listingpage/UnlockListing';
+import ListingSummary from './listingpage/ListingSummary';
 
-// const GlobalStyle = createGlobalStyle`
-// font-family: 'Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif'
-// `
+// Individual Page Sections
+import LeftColumnLeft from './listingpage/sections/LeftColumnLeft';
+import LeftColumnRight from './listingpage/sections/LeftColumnRight';
+
+
+
+
+import {NewIcon, TrademarkIcon, DealIcon, SaleIcon, HandshakeIcon, RightArrowIcon} from './listingpage/Icons';
 
 const LayoutGrid = styled.div`
 display: grid;
@@ -29,56 +29,29 @@ grid-template-rows: 15% 12% 20% 20% 5% 5% 5% 5% 15%;
 margin-top: 5rem;
 `
 
-const HeadingLayout = styled.div`
-grid-row-start: 1;
-grid-row-end: 1;
-grid-column-start: 1;
-grid-column-end: span 4;
-background-color: #3c79cb;
-color: #FFF;
+
+export const MultiplePrice = styled.div`
+border: 1px solid black;
+padding: 0.5em;
 `
 
-const UnlockLayout = styled.div`
-grid-row-start: 2;
-grid-row-end: 2;
-grid-column-start: 1;
-grid-column-end: span 4;
-margin-top: 1rem;
-margin-bottom: 1rem;
-padding-bottom: 2rem;
-border-bottom: 1px solid #848a93;
+export const ListStyle = styled.ul`
+  list-style-type: none;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  line-height:1.6;
 `
 
-const LeftColumnLeft = styled.div`
-grid-row-start: 3;
-grid-row-end: 3;
-grid-column-start: 1;
-grid-column-end: span 1;
-margin-top: 1rem;
-margin-bottom: 2rem;
-padding-bottom: 2rem;
+
+export const GreyStyle = styled.div`
+color: #848a93;
 `
 
-const LeftColumnRight = styled.div`
-grid-row-start: 3;
-grid-row-end: 3;
-grid-column-start: 2;
-grid-column-end: span 1;
-margin-top: 1rem;
-margin-bottom: 2rem;
-padding-bottom: 2rem;
-`
 
-const ListingSummaryLayout = styled.div`
-grid-row-start: 4;
-grid-row-end: 4;
-grid-column-start: 1;
-grid-column-end: span 4;
-margin-top: 2rem;
-margin: 2rem;
-padding-top: 2rem;
-padding-bottom: 2rem;
-`
+
+
+
+
 
 const RightLayout = styled.div`
 grid-row-start: 3;
@@ -133,80 +106,12 @@ padding-bottom: 2rem;
 `
 
 
-const TrademarkIcon = styled(Trademark)`
-height: 4rem;
-width: 4rem;
-color: #3c79cb;
-padding: 1rem;
-border-radius: 50%;
-border: solid 4px #3c79cb;
-`
 
-
-const DealIcon = styled(CommentsDollar)`
-height: 2rem;
-width: 2rem;
-
-`
-
-const HandshakeIcon = styled(Handshake)`
-height: 2rem;
-width: 2rem;
-
-`
-
-const SaleIcon = styled(BurstSale)`
-height: 2rem;
-width: 2rem;
-
-`
-
-const MultiplePrice = styled.div`
-border: 1px solid black;
-padding: 0.5em;
-`
-
-const ListStyle = styled.ul`
-  list-style-type: none;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  line-height:1.6;
-`
-
-
-const GreyStyle = styled.div`
-color: #848a93;
-`
-
-
-const NewIcon = styled(BurstNew)`
-  color: green;
-`
-
-const RightArrowIcon = styled(RightArrowAlt)`
-  color: ${props => props.color || "#FFF"};
-  height: 2em;
-  width: 2em;
-`
 
 export const Grid = styled.div`
 font-family: 'Helvetica';
 `;
 
-const ButtonTemplate = styled.button`
-padding-top: 1rem;
-padding-bottom: 1rem;
-padding-left: 1.2rem;
-padding-right: 1.2rem;
-color: #FFF;
-font-size: 1em;
-background-color: ${props => props.color || "#3c79cb"};
-font-weight: bold;
-margin-left: 1.5rem;
-border: none;
-border-radius: 5px;
-margin-bottom: 1rem;
-`
 
 
 
@@ -249,12 +154,6 @@ export const ListingPage = () => {
   },[]);
 
 
-  const currencyFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
 
 
 
@@ -268,39 +167,14 @@ export const ListingPage = () => {
       return (
 
         <>
-
         <LayoutGrid>
-        <HeadingLayout>
-        <h1>Niche: {listing.niches[0].niche}</h1>
-        <h2>Monetization: {listing.monetizations[0].monetization}</h2>
-      <h3>Home {'>'} Marketplace {'>'}  {listing.listing_number}</h3>
-      </HeadingLayout>
-      <UnlockLayout>
-      <h3>Unlock a listing for full access to the URL, Google Analytic, Profit and Loss Statement, etc.  <ButtonTemplate>Buy Now <RightArrowIcon /></ButtonTemplate> <ButtonTemplate color={"#f5a622"}>Unlock Listing <RightArrowIcon /></ButtonTemplate>
-      </h3>
-      </UnlockLayout>
+        <ListingHeader listing={listing} />
+        <UnlockListing />
+          <LeftColumnLeft listing={listing} />
 
-          <LeftColumnLeft>
-        <h2> #{listing.listing_number}</h2>
-        <p>Listing Number</p>
-        <h2> {currencyFormatter.format(listing.average_monthly_gross_revenue)}</h2>
-        <p>Monthly Revenue</p>
-        <h2> {listing.pricing_period_months} Months</h2>
-        <p>Pricing Period</p>
+        <LeftColumnRight listing={listing} />
 
-        </LeftColumnLeft>
-        <LeftColumnRight>
-        <h2>{currencyFormatter.format(listing.listing_price)}</h2>
-        <p>List Price</p>
-        <h2>{currencyFormatter.format(listing.average_monthly_net_profit)}</h2>
-        <p>Monthly Net Profit</p>
-          <h2>{listing.listing_multiple}x</h2>
-          <p>Multiple</p>
-          </LeftColumnRight>
-          <ListingSummaryLayout>
-          <h2>Listing Summary</h2>
-      {listing.summary.split('\n').map(string => <p>{string}</p>) }
-        </ListingSummaryLayout>
+        <ListingSummary listing={listing}/>
         <RightLayout>
         <h2>Status: {
         listing.listing_status.toLowerCase() === "new listing" ? <><NewIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "for sale" ? <><SaleIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "pending sold" ? <><DealIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "sold" ? <><HandshakeIcon /> {listing.listing_status} </> :
