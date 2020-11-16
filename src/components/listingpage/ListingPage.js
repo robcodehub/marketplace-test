@@ -5,22 +5,23 @@ import axios from 'axios';
 
 import styled, {createGlobalStyle} from 'styled-components';
 
-import {ButtonTemplate} from './listingpage/ButtonTemplate';
+import {ButtonTemplate} from './ButtonTemplate';
 
-import { ListingsHome } from '../Listings';
+import { ListingsHome } from '../../Listings';
 
-import ListingHeader from './listingpage/ListingHeader';
-import UnlockListing from './listingpage/UnlockListing';
-import ListingSummary from './listingpage/ListingSummary';
+import ListingHeader from './ListingHeader';
+import UnlockListing from './UnlockListing';
+import ListingSummary from './ListingSummary';
 
 // Individual Page Sections
-import LeftColumnLeft from './listingpage/sections/LeftColumnLeft';
-import LeftColumnRight from './listingpage/sections/LeftColumnRight';
+import LeftColumnLeft from './sections/LeftColumnLeft';
+import LeftColumnRight from './sections/LeftColumnRight';
+import RightLayout from './sections/RightLayout';
+import OtherInfoLeft from './sections/OtherInfoLeft'
+import {OtherInfoSection} from './sections/OtherInfoSection';
 
 
-
-
-import {NewIcon, TrademarkIcon, DealIcon, SaleIcon, HandshakeIcon, RightArrowIcon} from './listingpage/Icons';
+import {NewIcon, TrademarkIcon, DealIcon, SaleIcon, HandshakeIcon, RightArrowIcon} from './Icons';
 
 const LayoutGrid = styled.div`
 display: grid;
@@ -49,50 +50,12 @@ color: #848a93;
 
 
 
-
-
-
-
-const RightLayout = styled.div`
-grid-row-start: 3;
-grid-row-end: 3;
-grid-column-start: 3;
-grid-column-end: span 2;
-`
-
-
-
-const OtherInfoSection = styled.div`
-grid-row-start: ${props => props.gridstart || 7};
-grid-row-end: ${props => props.gridend || 7};
-grid-column-start: 1;
-grid-column-end: span 4;
-margin-top: 1rem;
-padding-top: 2rem;
-margin-bottom: 1rem;
-padding-bottom: 2rem;
-border-bottom: 1px solid #848a93;
-border-top: 1px solid #848a93;
-`
-
-
-
-
 const SpanWrapper = styled.div`
   border-top: 1px solid #848a93;
   margin: 2rem;
 `
 
-const OtherInfoLeft = styled.div`
-grid-row-start: 5;
-grid-row-end: 5;
-grid-column-start: 1;
-grid-column-end: span 2;
-margin-top: 2rem;
-padding-top: 2rem;
-margin-bottom: 2rem;
-padding-bottom: 2rem;
-`
+
 
 const OtherInfoRight = styled.div`
 grid-row-start: 5;
@@ -175,69 +138,11 @@ export const ListingPage = () => {
         <LeftColumnRight listing={listing} />
 
         <ListingSummary listing={listing}/>
-        <RightLayout>
-        <h2>Status: {
-        listing.listing_status.toLowerCase() === "new listing" ? <><NewIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "for sale" ? <><SaleIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "pending sold" ? <><DealIcon /> {listing.listing_status} </>: listing.listing_status.toLowerCase() === "sold" ? <><HandshakeIcon /> {listing.listing_status} </> :
-        <>{listing.listing_status}</>} </h2>
-          <h2>Business Created</h2>
-        <h3>{listing.business_created_at}</h3>
-        <h2>Assets Included in the Sale</h2>
-        <ListStyle>
-          {listing.assets_included.map((asset) => {
-          return <li>{asset}</li>
-          })
-          }
-          </ListStyle>
-          {listing.has_trademark ? <TrademarkIcon />: <></>}
-        </RightLayout>
-
-        <OtherInfoLeft>
-        <SpanWrapper>
-          <h2>Opportunities</h2>
-          <ListStyle>
-          {listing.opportunities.map((opp) => {
-          return <li>{opp}</li>
-          })
-          }
-          </ListStyle>
-          </SpanWrapper>
-          <SpanWrapper>
-        <h2>Work {'&'} Skills Required</h2>
-          <ListStyle>
-          {listing.work_required.map((skill) => {
-          return <li>{skill}</li>
-          })
-          }
-          </ListStyle>
-          </SpanWrapper>
-          <SpanWrapper>
-          <h2>Seller Support</h2>
-        <p>{listing.seller_support}</p>
-        </SpanWrapper>
-        <SpanWrapper>
-          <h2>Other Information</h2>
-          <ListStyle>
+        <RightLayout listing={listing} />
 
 
-        <li>Work Required Per Week: {listing.hours_worked_per_week} Hours</li>
-        <li>Private Blog Network(PBN): {listing.uses_pbn ? "Yes": "No"}</li>
-        <li>Domain Type:{' '}
-          {listing.sites.map((site) => {
-          return <>.{site.domain_type}</>
-          })
-          }
+        <OtherInfoLeft listing={listing} />
 
-          </li>
-        <li>Platform:{' '}
-          {listing.sites.map((site) => {
-          return <>{site.platform}</>
-          })
-          }
-
-        </li>
-          </ListStyle>
-          </SpanWrapper>
-        </OtherInfoLeft>
           <OtherInfoRight>
           <SpanWrapper>
           <h2>Risks</h2>

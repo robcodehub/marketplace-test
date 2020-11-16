@@ -7,7 +7,7 @@ import './App.css';
 
 import {ListingsHome} from './Listings';
 import {NewListings} from './components/NewListings';
-import {ListingPage} from './components/ListingPage'
+import {ListingPage} from './components/listingpage/ListingPage'
 
 import NavBar from './components/navbar/NavBar'
 
