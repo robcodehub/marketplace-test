@@ -18,6 +18,8 @@ import LeftColumnLeft from './sections/LeftColumnLeft';
 import LeftColumnRight from './sections/LeftColumnRight';
 import RightLayout from './sections/RightLayout';
 import OtherInfoLeft from './sections/OtherInfoLeft'
+import OtherInfoRight from './sections/OtherInfoRight'
+
 import {OtherInfoSection} from './sections/OtherInfoSection';
 
 
@@ -57,16 +59,7 @@ const SpanWrapper = styled.div`
 
 
 
-const OtherInfoRight = styled.div`
-grid-row-start: 5;
-grid-row-end: 5;
-grid-column-start: 3;
-grid-column-end: span 2;
-margin-top: 2rem;
-padding-top: 2rem;
-margin-bottom: 2rem;
-padding-bottom: 2rem;
-`
+
 
 
 
@@ -143,36 +136,8 @@ export const ListingPage = () => {
 
         <OtherInfoLeft listing={listing} />
 
-          <OtherInfoRight>
-          <SpanWrapper>
-          <h2>Risks</h2>
-          <ListStyle>
-          {listing.risks.map((risk) => {
-          return <li>{risk}</li>
-          })
-          }
-          </ListStyle>
-          </SpanWrapper>
-          <SpanWrapper>
-          <div>
-            <h2>Social Media Channels</h2>
-            <ButtonTemplate>Unlock Listing<RightArrowIcon /></ButtonTemplate>
-          </div>
-          </SpanWrapper>
-          <SpanWrapper>
-          <h2>Reason for Sale</h2>
-          <p>{listing.reason_for_sale}</p>
-          </SpanWrapper>
-          <SpanWrapper>
-          <h2>Buyer Profiles</h2>
-          <ListStyle>
-          {listing.buyer_profiles.map((profile) => {
-          return <li>{profile}</li>
-          })
-          }
-          </ListStyle>
-          </SpanWrapper>
-          </OtherInfoRight>
+          <OtherInfoRight listing={listing}/>
+
 
           <OtherInfoSection gridstart={6} gridend={6}>
             <h1>Analytical Data</h1>
