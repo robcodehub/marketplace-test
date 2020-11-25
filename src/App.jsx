@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 
+import styled from 'styled-components';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import './App.css';
-
-import { ListingsHome } from './Listings.jsx';
-import { NewListings } from './components/NewListings.jsx';
-import { ListingPage } from './components/listingpage/ListingPage.jsx';
+import { ListingsHome } from './components/marketplace/Listings.jsx';
+import { NewListings } from './components/newlistings/NewListings.jsx';
+import ListingPage from './components/listingpage/ListingPage.jsx';
 
 import NavBar from './components/navbar/NavBar.jsx';
 
+const AppDiv = styled.div`
+  text-align: center;
+`;
+
 function App() {
   return (
-    <div className="App">
+    <AppDiv>
       <Router>
         <NavBar />
 
@@ -22,7 +26,7 @@ function App() {
           <Route path="/" component={ListingsHome} />
         </Switch>
       </Router>
-    </div>
+    </AppDiv>
   );
 }
 

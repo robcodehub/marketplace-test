@@ -8,9 +8,9 @@ import {
   SaleIcon,
   HandshakeIcon,
   RightArrowIcon,
-} from '../Icons.jsx';
+} from '../../icons/Icons.jsx';
 
-import { currencyFormatter } from '../functions/convertCurrency';
+import currencyFormatter from '../../../functions/convertCurrency';
 
 const RightLayoutStyles = styled.div`
   grid-row-start: 3;

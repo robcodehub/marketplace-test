@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 /* .copyright {
   display: flex;
@@ -12,9 +12,5 @@ import React from 'react'
 */
 
 export default function Footer() {
-  return (
-    <div>
-
-    </div>
-  )
+  return <div></div>;
 }

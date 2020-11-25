@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { currencyFormatter } from '../functions/convertCurrency';
+import currencyFormatter from '../../../functions/convertCurrency';
 
 const LeftColumnRightStyles = styled.div`
   grid-row-start: 3;

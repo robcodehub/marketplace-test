@@ -7,7 +7,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import { ButtonTemplate } from './ButtonTemplate';
 
-import { ListingsHome } from '../../Listings.jsx';
+import { ListingsHome } from '../marketplace/Listings.jsx';
 
 import ListingHeader from './ListingHeader.jsx';
 import UnlockListing from './UnlockListing.jsx';
@@ -20,7 +20,7 @@ import RightLayout from './sections/RightLayout.jsx';
 import OtherInfoLeft from './sections/OtherInfoLeft.jsx';
 import OtherInfoRight from './sections/OtherInfoRight.jsx';
 
-import { OtherInfoSection } from './sections/OtherInfoSection';
+import OtherInfoSection from './sections/OtherInfoSection';
 
 import {
   NewIcon,
@@ -29,7 +29,7 @@ import {
   SaleIcon,
   HandshakeIcon,
   RightArrowIcon,
-} from './Icons.jsx';
+} from '../icons/Icons.jsx';
 
 const LayoutGrid = styled.div`
   display: grid;
@@ -82,7 +82,7 @@ export const ColColored = styled.div`
   color: ${(props) => props.color || '#000'};
 `;
 
-export const ListingPage = () => {
+const ListingPage = () => {
   const [businessListings, setBusinessListings] = useState([]);
 
   const { id } = useParams();
@@ -151,3 +151,5 @@ export const ListingPage = () => {
     </div>
   );
 };
+
+export default ListingPage;

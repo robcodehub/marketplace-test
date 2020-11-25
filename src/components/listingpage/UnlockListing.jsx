@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { ButtonTemplate } from './ButtonTemplate';
 
-import { RightArrowIcon } from './Icons.jsx';
+import { RightArrowIcon } from '../icons/Icons.jsx';
 
 const UnlockLayout = styled.div`
   grid-row-start: 2;

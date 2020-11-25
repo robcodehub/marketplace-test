@@ -8,10 +8,10 @@ import {
   SaleIcon,
   HandshakeIcon,
   RightArrowIcon,
-} from '../Icons.jsx';
+} from '../../icons/Icons.jsx';
 
 import { ButtonTemplate } from '../ButtonTemplate';
-import { currencyFormatter } from '../functions/convertCurrency';
+import currencyFormatter from '../../../functions/convertCurrency';
 
 const OtherInfoRightStyles = styled.div`
   grid-row-start: 5;
