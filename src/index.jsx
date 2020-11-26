@@ -4,10 +4,14 @@ import GlobalStyle from './GlobalStyle.js';
 import App from './App.jsx';
 import reportWebVitals from './__tests__/reportWebVitals';
 
+import { NewListingsProvider } from './context/ListingsContext.jsx';
+
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
-    <App />
+    <NewListingsProvider>
+      <App />
+    </NewListingsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

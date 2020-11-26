@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
@@ -23,6 +23,7 @@ export const Grid = styled.div`
 
 export const ListingsHome = () => {
   const [businessListings, setBusinessListings] = useState([]);
+  // const { allListings, setAllListings } = useContext(ListingsContext);
 
   useEffect(() => {
     axios

@@ -10,7 +10,7 @@ import ListingsHeader, { Col } from '../marketplace/ListingsHeader.jsx';
 
 import BusinessListingRow, { BusinessRow } from '../marketplace/BusinessListingRow.jsx';
 
-import { ListingsContext } from '../../context/ListingsContext';
+import { NewListingsContext } from '../../context/ListingsContext.jsx';
 
 export const Grid = styled.div`
   font-family: 'Helvetica';
@@ -19,21 +19,26 @@ export const Grid = styled.div`
 export const NewListings = () => {
   const [newListings, setNewListings] = useState([]);
 
-  const { allListings, setAllListings } = useContext(ListingsContext);
+  const [allNewListings, setAllNewListings] = useContext(NewListingsContext);
 
   useEffect(() => {
-    axios
-      .get(
-        'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings'
-      )
-      .then((response) => {
-        setNewListings([...response.data.data.listings]);
-      });
+    if (allNewListings[0] !== 'loading' || undefined) {
+      setNewListings([...allNewListings]);
+    } else {
+      axios
+        .get(
+          'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings'
+        )
+        .then((response) => {
+          setNewListings([...response.data.data.listings]);
+          setAllNewListings([...response.data.data.listings]);
+        });
+    }
   }, []);
 
   const ListingsDisplay = ({ listings }) => (
     <>
-      <h1>{allListings.length || 0} listings</h1>
+      <h1>{newListings.length || 0} listings</h1>
       <Grid>
         <ListingsHeader />
         {listings.length > 0 ? (
