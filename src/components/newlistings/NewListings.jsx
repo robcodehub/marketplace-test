@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ import ListingsHeader, { Col } from '../marketplace/ListingsHeader.jsx';
 
 import BusinessListingRow, { BusinessRow } from '../marketplace/BusinessListingRow.jsx';
 
-import currencyFormatter from '../../functions/convertCurrency';
+import { ListingsContext } from '../../context/ListingsContext';
 
 export const Grid = styled.div`
   font-family: 'Helvetica';
@@ -18,6 +18,8 @@ export const Grid = styled.div`
 
 export const NewListings = () => {
   const [newListings, setNewListings] = useState([]);
+
+  const { allListings, setAllListings } = useContext(ListingsContext);
 
   useEffect(() => {
     axios
@@ -31,6 +33,7 @@ export const NewListings = () => {
 
   const ListingsDisplay = ({ listings }) => (
     <>
+      <h1>{allListings.length || 0} listings</h1>
       <Grid>
         <ListingsHeader />
         {listings.length > 0 ? (
