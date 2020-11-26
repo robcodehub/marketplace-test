@@ -15,10 +15,9 @@ import currencyFormatter from '../../../functions/convertCurrency';
 import { ListStyle } from './OtherInfoSection';
 
 const RightLayoutStyles = styled.div`
-  /* grid-row-start: 3;
-  grid-row-end: 3; */
   grid-column-start: 3;
   grid-column-end: span 2;
+  border-left: 1px solid #000;
 `;
 
 export default function RightLayout({ listing }) {

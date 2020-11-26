@@ -10,16 +10,13 @@ import UnlockListing from './UnlockListing.jsx';
 import ListingSummary from './ListingSummary.jsx';
 
 // Individual Page Sections
-import LeftColumnLeft from './sections/LeftColumnLeft.jsx';
-import LeftColumnRight from './sections/LeftColumnRight.jsx';
-import RightLayout from './sections/RightLayout.jsx';
-import OtherInfoLeft from './sections/listingboxes/OtherInfoLeft.jsx';
-import OtherInfoRight from './sections/listingboxes/OtherInfoRight.jsx';
-
 import ListingSectionOne from './sections/ListingSectionOne.jsx';
 import ListingSectionTwo from './sections/ListingSectionTwo.jsx';
 import ListingSectionThree from './sections/ListingSectionThree.jsx';
 import ListingSectionFour from './sections/ListingSectionFour.jsx';
+import ListingSectionFive from './sections/ListingSectionFive.jsx';
+import ListingSectionSix from './sections/ListingSectionSix.jsx';
+import FaqSection from './sections/FaqSection.jsx';
 
 const LayoutGrid = styled.div`
   display: grid;
@@ -55,6 +52,9 @@ const ListingPage = () => {
             <ListingSectionTwo listing={listing} />
             <ListingSectionThree listing={listing} />
             <ListingSectionFour listing={listing} />
+            <ListingSectionFive listing={listing} />
+            <ListingSectionSix listing={listing} />
+            <FaqSection />
           </LayoutGrid>
         </>
       );

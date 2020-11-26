@@ -13,7 +13,7 @@ const UnlockLayout = styled.div`
   grid-column-end: span 4;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid #848a93;
 `;
 

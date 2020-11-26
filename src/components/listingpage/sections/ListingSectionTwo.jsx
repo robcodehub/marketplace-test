@@ -14,8 +14,8 @@ const ListingSectionTwoStyles = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(10%, auto);
   margin-top: 1rem;
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid #000;
 `;
 

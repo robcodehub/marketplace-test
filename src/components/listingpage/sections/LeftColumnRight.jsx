@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import currencyFormatter from '../../../functions/convertCurrency';
 
 const LeftColumnRightStyles = styled.div`
-  /* grid-row-start: 3;
-  grid-row-end: 3; */
   grid-column-start: 2;
   grid-column-end: span 1;
   margin-top: 1rem;
