@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -7,63 +6,14 @@ import styled from 'styled-components';
 
 import { DealIcon, SaleIcon, HandshakeIcon, NewIcon } from '../icons/Icons.jsx';
 
-import ListingsHeader from '../marketplace/ListingsHeader.jsx';
+import ListingsHeader, { Col } from '../marketplace/ListingsHeader.jsx';
+
+import BusinessListingRow, { BusinessRow } from '../marketplace/BusinessListingRow.jsx';
 
 import currencyFormatter from '../../functions/convertCurrency';
 
-const MultiplePrice = styled.div`
-  border: 1px solid black;
-  padding: 0.5em;
-`;
-
-const GreyStyle = styled.div`
-  color: #848a93;
-`;
-
 export const Grid = styled.div`
   font-family: 'Helvetica';
-`;
-
-export const RowHeadings = styled.div`
-  display: flex;
-  padding: 1rem;
-  background-color: #000;
-  font-family: 'Helvetica';
-  font-size: 1.2em;
-  font-weight: bold;
-  color: ${(props) => props.color || '#fff'};
-`;
-
-const ListingPreview = styled.div`
-  display: flex;
-  padding: 1rem;
-  background-color: #fff;
-  font-family: 'Helvetica';
-  font-size: 1.2em;
-  font-weight: bold;
-  color: ${(props) => props.color || '#000'};
-  &:hover {
-    border: 2px solid #005a87;
-  }
-`;
-
-const media = {
-  xs: (styles) => `
-    @media only screen and (max-width: 480px) {
-      ${styles}
-  }
-  `,
-};
-
-export const Col = styled.div`
-  flex: ${(props) => props.size};
-  ${(props) => props.collapse && media[props.collapse](`display: none;`)}
-`;
-
-export const ColColored = styled.div`
-  flex: ${(props) => props.size};
-  ${(props) => props.collapse && media[props.collapse](`display: none;`)};
-  color: ${(props) => props.color || '#000'};
 `;
 
 export const NewListings = () => {
@@ -79,78 +29,6 @@ export const NewListings = () => {
       });
   }, []);
 
-  const BusinessHeadings = () => {
-    return (
-      <>
-        <Col size={7}>Listing Number</Col>
-        <Col size={7}>Niche</Col>
-        <Col size={7}>Monetization</Col>
-        <Col size={7}>Price</Col>
-        <Col size={7}>Monthly Net Profit</Col>
-        <Col size={7}>Multiple</Col>
-        <Col size={7}>Listing Status</Col>
-      </>
-    );
-  };
-
-  const BusinessListingRow = ({ listing }) => {
-    return (
-      <>
-        <ColColored
-          size={7}
-          color={
-            listing.listing_status.toLowerCase() === 'new listing'
-              ? '#f5a622'
-              : listing.listing_status.toLowerCase() !== 'sold'
-              ? '#005a87'
-              : '#848a93'
-          }
-        >
-          <Link to={`/listing/${listing.listing_number}`}>#{listing.listing_number}</Link>
-        </ColColored>
-        <Col size={7}>{listing.niches[0].niche}</Col>
-        <Col size={7}>{listing.monetizations[0].monetization}</Col>
-        <ColColored
-          size={7}
-          color={
-            listing.listing_status.toLowerCase() === 'new listing'
-              ? '#f5a622'
-              : listing.listing_status.toLowerCase() !== 'sold'
-              ? '#005a87'
-              : '#848a93'
-          }
-        >
-          {currencyFormatter.format(listing.listing_price)}
-        </ColColored>
-        <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
-        <Col size={7}>
-          <MultiplePrice>{listing.listing_multiple}x</MultiplePrice>
-        </Col>
-        <Col size={7}>
-          {listing.listing_status.toLowerCase() === 'new listing' ? (
-            <>
-              <NewIcon /> {listing.listing_status}{' '}
-            </>
-          ) : listing.listing_status.toLowerCase() === 'for sale' ? (
-            <>
-              <SaleIcon /> {listing.listing_status}{' '}
-            </>
-          ) : listing.listing_status.toLowerCase() === 'pending sold' ? (
-            <>
-              <DealIcon /> {listing.listing_status}{' '}
-            </>
-          ) : listing.listing_status.toLowerCase() === 'sold' ? (
-            <>
-              <HandshakeIcon /> {listing.listing_status}{' '}
-            </>
-          ) : (
-            <>{listing.listing_status}</>
-          )}
-        </Col>
-      </>
-    );
-  };
-
   const ListingsDisplay = ({ listings }) => (
     <>
       <Grid>
@@ -159,24 +37,18 @@ export const NewListings = () => {
           listings.map((listing, index) => {
             {
               return index % 2 === 0 ? (
-                <ListingPreview
-                  color={listing.listing_status.toLowerCase() === 'sold' ? '#848a93' : '#000'}
-                >
+                <BusinessRow>
                   <BusinessListingRow listing={listing} />
-                </ListingPreview>
+                </BusinessRow>
               ) : (
-                <ListingPreview
-                  color={listing.listing_status.toLowerCase() === 'sold' ? '#848a93' : '#000'}
-                >
+                <BusinessRow>
                   <BusinessListingRow listing={listing} />
-                </ListingPreview>
+                </BusinessRow>
               );
             }
           })
         ) : (
-          <ListingPreview>
-            <BusinessHeadings />
-          </ListingPreview>
+          <ListingsHeader />
         )}
       </Grid>
     </>

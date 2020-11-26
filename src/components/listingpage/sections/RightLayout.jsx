@@ -12,18 +12,13 @@ import {
 
 import currencyFormatter from '../../../functions/convertCurrency';
 
+import { ListStyle } from './OtherInfoSection';
+
 const RightLayoutStyles = styled.div`
-  grid-row-start: 3;
-  grid-row-end: 3;
+  /* grid-row-start: 3;
+  grid-row-end: 3; */
   grid-column-start: 3;
   grid-column-end: span 2;
-`;
-
-export const ListStyle = styled.ul`
-  list-style-type: none;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  line-height: 1.6;
 `;
 
 export default function RightLayout({ listing }) {

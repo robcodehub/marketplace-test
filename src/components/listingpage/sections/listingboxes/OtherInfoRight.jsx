@@ -1,17 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {
-  NewIcon,
-  TrademarkIcon,
-  DealIcon,
-  SaleIcon,
-  HandshakeIcon,
-  RightArrowIcon,
-} from '../../icons/Icons.jsx';
+import { RightArrowIcon } from '../../../icons/Icons.jsx';
 
-import { ButtonTemplate } from '../ButtonTemplate';
-import currencyFormatter from '../../../functions/convertCurrency';
+import { ButtonTemplate } from '../../ButtonTemplate';
+
+import { ListStyle } from '../OtherInfoSection.js';
 
 const OtherInfoRightStyles = styled.div`
   grid-row-start: 5;
@@ -27,13 +21,6 @@ const OtherInfoRightStyles = styled.div`
 const SpanWrapper = styled.div`
   border-top: 1px solid #848a93;
   margin: 2rem;
-`;
-
-export const ListStyle = styled.ul`
-  list-style-type: none;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  line-height: 1.6;
 `;
 
 export default function OtherInfoRight({ listing }) {

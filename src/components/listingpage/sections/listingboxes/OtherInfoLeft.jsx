@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import currencyFormatter from '../../../functions/convertCurrency';
+import currencyFormatter from '../../../../functions/convertCurrency';
+
+import { ListStyle } from '../OtherInfoSection.js';
 
 const OtherInfoLeftStyles = styled.div`
   grid-row-start: 5;
@@ -17,13 +19,6 @@ const OtherInfoLeftStyles = styled.div`
 const SpanWrapper = styled.div`
   border-top: 1px solid #848a93;
   margin: 2rem;
-`;
-
-export const ListStyle = styled.ul`
-  list-style-type: none;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  line-height: 1.6;
 `;
 
 export default function OtherInfoLeft({ listing }) {
