@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import {Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const NavBarStyle = styled.div`
   height: 2rem;
@@ -19,40 +19,34 @@ const NavBarStyle = styled.div`
   justify-content: space-between;
   padding-top: 1rem;
   padding-bottom: 2rem;
-
 `;
 
-
-
 const MenuItems = styled.ul`
-list-style: none;
-display: flex;
-flex-flow: row nowrap;
-justify-content: space-around;
-color: #FFF;
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  color: #fff;
 
-li {
-  color: #FFF;
-  font-size: 1.2em;
-  font-family: 'Helvetica';
-  font-weight: bold;
+  li {
+    color: #fff;
+    font-size: 1.2em;
+    font-family: 'Helvetica';
+    font-weight: bold;
 
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 20%;
+      text-decoration-color: #f5a622;
+      cursor: pointer;
+    }
 
-
-  &:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 20%;
-  text-decoration-color: #f5a622;
-  cursor: pointer;
-}
-
-a {
-  &:visited {
-    color: #FFF;
+    a {
+      &:visited {
+        color: #fff;
+      }
+    }
   }
-}
-
-}
 `;
 
 // const MenuList = styled.li`
@@ -82,17 +76,22 @@ a {
 }
 */
 
-
 export default function NavBar() {
   return (
     <NavBarStyle>
       <MenuItems>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/">Marketplace</Link></li>
-        <li><Link to="/newlistings">New Listings </Link></li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/">Marketplace</Link>
+        </li>
+        <li>
+          <Link to="/newlistings">New Listings </Link>
+        </li>
         <li>About Us</li>
         <li>Blog</li>
       </MenuItems>
     </NavBarStyle>
-  )
+  );
 }

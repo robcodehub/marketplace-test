@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import GlobalStyle from './GlobalStyle.js';
+import App from './App.jsx';
+import reportWebVitals from './__tests__/reportWebVitals';
+
+import { NewListingsProvider } from './context/ListingsContext.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalStyle />
+    <NewListingsProvider>
+      <App />
+    </NewListingsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
