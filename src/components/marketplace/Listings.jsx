@@ -12,6 +12,8 @@ import currencyFormatter from '../../functions/convertCurrency';
 import ListingsHeader, { Col } from './ListingsHeader.jsx';
 import BusinessListingRow, { BusinessRow } from './BusinessListingRow.jsx';
 
+import { AllListingsContext } from '../../context/ListingsContext.jsx';
+
 const MultiplePrice = styled.div`
   border: 1px solid black;
   padding: 0.5em;
@@ -23,17 +25,22 @@ export const Grid = styled.div`
 
 export const ListingsHome = () => {
   const [businessListings, setBusinessListings] = useState([]);
-  // const { allListings, setAllListings } = useContext(ListingsContext);
+  const [allListings, setAllListings] = useContext(AllListingsContext);
 
   useEffect(() => {
-    axios
-      .get(
-        'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest'
-      )
-      .then((response) => {
-        setBusinessListings([...response.data.data.listings]);
-      });
-  }, []);
+    if (allListings[0] === undefined || allListings[0] === 'loading') {
+      axios
+        .get(
+          'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest'
+        )
+        .then((response) => {
+          setBusinessListings([...response.data.data.listings]);
+          setAllListings([...response.data.data.listings]);
+        });
+    } else {
+      setBusinessListings([...allListings]);
+    }
+  }, [allListings, setAllListings]);
 
   const ListingsDisplay = ({ listings }) => (
     <>
