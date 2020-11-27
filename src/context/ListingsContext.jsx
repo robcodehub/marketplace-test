@@ -1,16 +1,22 @@
 import React, { useContext, useState, createContext } from 'react';
 
+export const AllListingsContext = createContext(null);
 export const NewListingsContext = createContext(null);
 
-const { Provider } = NewListingsContext;
-
-export const NewListingsProvider = ({ children }) => {
+export const ListingsContextProvider = ({ children }) => {
   const [allNewListings, setAllNewListings] = useState(['loading']);
+  const [allListings, setAllListings] = useState(['loading']);
 
-  return <Provider value={[allNewListings, setAllNewListings]}>{children}</Provider>;
+  return (
+    <AllListingsContext.Provider value={[allNewListings, setAllNewListings]}>
+      <NewListingsContext.Provider value={[allNewListings, setAllNewListings]}>
+        {children}
+      </NewListingsContext.Provider>
+    </AllListingsContext.Provider>
+  );
 };
 
-NewListingsProvider.context = NewListingsContext;
+ListingsContextProvider.context = ListingsContextProvider;
 
 // export function useListings() {
 //   return useContext(ListingsContext);

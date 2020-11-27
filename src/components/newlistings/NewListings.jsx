@@ -22,7 +22,7 @@ export const NewListings = () => {
   const [allNewListings, setAllNewListings] = useContext(NewListingsContext);
 
   useEffect(() => {
-    if (allNewListings[0] !== 'loading' || undefined) {
+    if (allNewListings !== undefined && allNewListings[0] !== 'loading') {
       setNewListings([...allNewListings]);
     } else {
       axios
@@ -38,7 +38,7 @@ export const NewListings = () => {
 
   const ListingsDisplay = ({ listings }) => (
     <>
-      <h1>{newListings.length || 0} listings</h1>
+      <h2>{newListings.length || 0} New Listings Published </h2>
       <Grid>
         <ListingsHeader />
         {listings.length > 0 ? (
@@ -67,7 +67,6 @@ export const NewListings = () => {
       <div>
         <h1>Our Latest Listings</h1>
         <h3>Every Monday we publish new businesses for sale on our marketplace</h3>
-        <div>4 New Listings Published | 70 Listings Total </div>
       </div>
       <ListingsDisplay listings={newListings} />
     </div>
