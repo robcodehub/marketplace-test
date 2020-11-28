@@ -68,7 +68,7 @@ export const ListingsHome = () => {
           })
         ) : (
           <BusinessRow>
-            <ListingsHeader />
+            <h2>Loading Listings...</h2>
           </BusinessRow>
         )}
       </Grid>
