@@ -19,11 +19,11 @@ const ListingsDisplay = ({ listings }) => (
         listings.map((listing, index) => {
           {
             return index % 2 === 0 ? (
-              <BusinessRow>
+              <BusinessRow backgroundcolor="#fff">
                 <BusinessListingRow listing={listing} />
               </BusinessRow>
             ) : (
-              <BusinessRow>
+              <BusinessRow backgroundcolor="#e8e8e8">
                 <BusinessListingRow listing={listing} />
               </BusinessRow>
             );

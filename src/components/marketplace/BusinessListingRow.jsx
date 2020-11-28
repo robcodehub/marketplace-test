@@ -44,9 +44,15 @@ const BusinessListingRow = ({ listing }) => {
       >
         <Link to={`/listing/${listing.listing_number}`}>#{listing.listing_number}</Link>
       </Col>
-      <Col size={7}>{listing.niches.length === 0 ? 'General' : listing.niches[0].niche}</Col>
       <Col size={7}>
-        {listing.monetizations.length === 0 ? 'Mixed' : listing.monetizations[0].monetization}
+        <Link to={`/listing/${listing.listing_number}`}>
+          {listing.niches.length === 0 ? 'General' : listing.niches[0].niche}
+        </Link>
+      </Col>
+      <Col size={7}>
+        <Link to={`/listing/${listing.listing_number}`}>
+          {listing.monetizations.length === 0 ? 'Mixed' : listing.monetizations[0].monetization}{' '}
+        </Link>
       </Col>
       <Col
         size={7}
@@ -58,32 +64,42 @@ const BusinessListingRow = ({ listing }) => {
             : '#848a93'
         }
       >
-        {currencyFormatter.format(listing.listing_price)}
-      </Col>
-      <Col size={7}>{currencyFormatter.format(listing.average_monthly_net_profit)}</Col>
-      <Col size={7}>
-        <MultiplePrice>{listing.listing_multiple}x</MultiplePrice>
+        <Link to={`/listing/${listing.listing_number}`}>
+          {currencyFormatter.format(listing.listing_price)}
+        </Link>
       </Col>
       <Col size={7}>
-        {listing.listing_status.toLowerCase() === 'new listing' ? (
-          <>
-            <NewIcon /> {listing.listing_status}{' '}
-          </>
-        ) : listing.listing_status.toLowerCase() === 'for sale' ? (
-          <>
-            <SaleIcon /> {listing.listing_status}{' '}
-          </>
-        ) : listing.listing_status.toLowerCase() === 'pending sold' ? (
-          <>
-            <DealIcon /> {listing.listing_status}{' '}
-          </>
-        ) : listing.listing_status.toLowerCase() === 'sold' ? (
-          <>
-            <HandshakeIcon /> {listing.listing_status}{' '}
-          </>
-        ) : (
-          <>{listing.listing_status}</>
-        )}
+        <Link to={`/listing/${listing.listing_number}`}>
+          {currencyFormatter.format(listing.average_monthly_net_profit)}
+        </Link>
+      </Col>
+      <Col size={7}>
+        <Link to={`/listing/${listing.listing_number}`}>
+          <MultiplePrice>{listing.listing_multiple}x</MultiplePrice>
+        </Link>
+      </Col>
+      <Col size={7}>
+        <Link to={`/listing/${listing.listing_number}`}>
+          {listing.listing_status.toLowerCase() === 'new listing' ? (
+            <>
+              <NewIcon /> {listing.listing_status}{' '}
+            </>
+          ) : listing.listing_status.toLowerCase() === 'for sale' ? (
+            <>
+              <SaleIcon /> {listing.listing_status}{' '}
+            </>
+          ) : listing.listing_status.toLowerCase() === 'pending sold' ? (
+            <>
+              <DealIcon /> {listing.listing_status}{' '}
+            </>
+          ) : listing.listing_status.toLowerCase() === 'sold' ? (
+            <>
+              <HandshakeIcon /> {listing.listing_status}{' '}
+            </>
+          ) : (
+            <>{listing.listing_status}</>
+          )}
+        </Link>
       </Col>
     </>
   );
