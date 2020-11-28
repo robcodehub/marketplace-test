@@ -14,7 +14,7 @@ export const ListingsContextProvider = ({ children }) => {
   const [currentSortType, setCurrentSortType] = useState('listing_number');
 
   return (
-    <AllListingsContext.Provider value={[allNewListings, setAllNewListings]}>
+    <AllListingsContext.Provider value={[allListings, setAllListings]}>
       <NewListingsContext.Provider value={[allNewListings, setAllNewListings]}>
         <SortListingOrderContext.Provider value={[ascOrDesc, setAscOrDesc]}>
           <SortListingTypeContext.Provider value={[currentSortType, setCurrentSortType]}>

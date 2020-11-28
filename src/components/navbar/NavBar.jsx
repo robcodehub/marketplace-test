@@ -42,6 +42,8 @@ const MenuItems = styled.ul`
     }
 
     a {
+      color: #fff;
+
       &:visited {
         color: #fff;
       }
