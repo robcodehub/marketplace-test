@@ -26,6 +26,13 @@ export const Col = styled.div`
     color: ${(props) => props.color || '#000'};
     text-decoration: none;
   }
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 20%;
+    text-decoration-color: #f5a622;
+    cursor: pointer;
+  }
 `;
 
 const BusinessHeadings = () => {
