@@ -44,8 +44,10 @@ const BusinessListingRow = ({ listing }) => {
       >
         <Link to={`/listing/${listing.listing_number}`}>#{listing.listing_number}</Link>
       </Col>
-      <Col size={7}>{listing.niches[0].niche}</Col>
-      <Col size={7}>{listing.monetizations[0].monetization}</Col>
+      <Col size={7}>{listing.niches.length === 0 ? 'General' : listing.niches[0].niche}</Col>
+      <Col size={7}>
+        {listing.monetizations.length === 0 ? 'Mixed' : listing.monetizations[0].monetization}
+      </Col>
       <Col
         size={7}
         color={

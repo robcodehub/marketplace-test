@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+
+import { NewListingsContext, AllListingsContext } from '../../context/ListingsContext.jsx';
 
 const media = {
   xs: (styles) => `
@@ -21,15 +24,43 @@ export const Col = styled.div`
 `;
 
 const BusinessHeadings = () => {
+  const [allListings, setAllListings] = useContext(AllListingsContext);
+
+  const sortListings = (orderByType, orderAscDesc) => {
+    console.log(`On Click Running with ${orderByType} and ${orderAscDesc}`);
+
+    axios
+      .get(
+        `https://cors-anywhere.herokuapp.com/https://api.empireflippers.com/api/v1/listings/list?sort=${orderByType}&order=${orderAscDesc}`
+      )
+      .then((response) => {
+        setAllListings([...response.data.data.listings]);
+      });
+  };
+
   return (
     <>
-      <Col size={7}>Listing Number</Col>
-      <Col size={7}>Niche</Col>
-      <Col size={7}>Monetization</Col>
-      <Col size={7}>Price</Col>
-      <Col size={7}>Monthly Net Profit</Col>
-      <Col size={7}>Multiple</Col>
-      <Col size={7}>Listing Status</Col>
+      <Col size={7} onClick={() => sortListings('listing_number', 'asc')}>
+        Listing Number
+      </Col>
+      <Col size={7} onClick={() => sortListings('max_niche', 'asc')}>
+        Niche
+      </Col>
+      <Col size={7} onClick={() => sortListings('max_monetization', 'asc')}>
+        Monetization
+      </Col>
+      <Col size={7} onClick={() => sortListings('listing_price', 'asc')}>
+        Price
+      </Col>
+      <Col size={7} onClick={() => sortListings('average_monthly_net_profit', 'asc')}>
+        Monthly Net Profit
+      </Col>
+      <Col size={7} onClick={() => sortListings('listing_multiple', 'asc')}>
+        Multiple
+      </Col>
+      <Col size={7} onClick={() => sortListings('listing_status', 'asc')}>
+        Listing Status
+      </Col>
     </>
   );
 };
