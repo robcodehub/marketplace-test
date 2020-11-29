@@ -6,8 +6,6 @@ import styled from 'styled-components';
 
 import { NewListingsContext } from '../../context/ListingsContext.jsx';
 
-// import ListingsDisplay from './ListingsDisplay.jsx';
-
 import ListingDisplay from '../marketplace/ListingDisplay.jsx';
 
 export const Grid = styled.div`
