@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import {
@@ -7,10 +8,7 @@ import {
   DealIcon,
   SaleIcon,
   HandshakeIcon,
-  RightArrowIcon,
 } from '../../../icons/Icons.jsx';
-
-import currencyFormatter from '../../../../functions/convertCurrency';
 
 import { ListStyle } from '../../templates/ListStyles.js';
 
@@ -57,3 +55,7 @@ export default function StatusAndAssets({ listing }) {
     </StatusAndAssetsStyles>
   );
 }
+
+StatusAndAssets.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

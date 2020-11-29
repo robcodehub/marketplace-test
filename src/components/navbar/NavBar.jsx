@@ -51,33 +51,6 @@ const MenuItems = styled.ul`
   }
 `;
 
-// const MenuList = styled.li`
-//   float: left;
-//   padding-left: 1.2rem;
-//   padding-right: 1.2rem;
-//   a:visited {
-//   color: white;
-// }
-// `
-
-/*
-
-.menu-items {
-  list-style-type: none;
-  display: inline;
-}
-
-.menu-items li {
-
-}
-.menu-items li
-
-.menu-items li a:hover {
-  text-decoration: underline;
-  text-decoration-color: #f5a622;
-}
-*/
-
 export default function NavBar() {
   return (
     <NavBarStyle>

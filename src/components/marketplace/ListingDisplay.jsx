@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
 import ListingsHeader from './ListingsHeader.jsx';
 import BusinessListingRow, { BusinessRow } from './BusinessListingRow.jsx';
-
-import { AllListingsContext } from '../../context/ListingsContext.jsx';
 
 export const Grid = styled.div`
   font-family: 'Helvetica';
@@ -45,5 +44,9 @@ const ListingDisplay = ({ listings }) => (
     </Grid>
   </>
 );
+
+ListingDisplay.propTypes = {
+  listings: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ListingDisplay;

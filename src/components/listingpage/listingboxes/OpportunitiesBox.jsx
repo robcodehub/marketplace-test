@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { ListStyle } from '../templates/ListStyles.js';
@@ -15,9 +16,13 @@ export default function OpportunitiesBox({ listing }) {
       <h2>Opportunities</h2>
       <ListStyle>
         {listing.opportunities.map((opp) => {
-          return <li>{opp}</li>;
+          return <li key={opp}>{opp}</li>;
         })}
       </ListStyle>
     </OpportunitiesBoxLayout>
   );
 }
+
+OpportunitiesBox.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

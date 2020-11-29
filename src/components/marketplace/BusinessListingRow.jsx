@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import { DealIcon, SaleIcon, HandshakeIcon, NewIcon } from '../icons/Icons.jsx';
 
-import currencyFormatter from '../../functions/convertCurrency';
+import Col from './templates/ColTemplate';
 
-import ListingsHeader, { Col } from './ListingsHeader.jsx';
+import currencyFormatter from '../../functions/convertCurrency';
 
 const MultiplePrice = styled.div`
   border: 1px solid black;
@@ -103,6 +104,10 @@ const BusinessListingRow = ({ listing }) => {
       </Col>
     </>
   );
+};
+
+BusinessListingRow.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default BusinessListingRow;

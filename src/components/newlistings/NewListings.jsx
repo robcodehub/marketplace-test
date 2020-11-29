@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 import axios from 'axios';
 
 import styled from 'styled-components';
 
 import { NewListingsContext } from '../../context/ListingsContext.jsx';
-
-// import ListingsDisplay from './ListingsDisplay.jsx';
 
 import ListingDisplay from '../marketplace/ListingDisplay.jsx';
 

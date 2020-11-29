@@ -1,7 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-import { ListStyle } from '../templates/ListStyles.js';
 
 const SellerSupportBoxLayout = styled.div`
   grid-column-start: 1;
@@ -17,3 +16,7 @@ export default function SellerSupportBox({ listing }) {
     </SellerSupportBoxLayout>
   );
 }
+
+SellerSupportBox.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import OtherInfoBox from '../../listingboxes/OtherInfoBox.jsx';
 import BuyerProfileBox from '../../listingboxes/BuyerProfileBox.jsx';
@@ -14,3 +14,7 @@ export default function ListingSectionSix({ listing }) {
     </ListingSectionTemplate>
   );
 }
+
+ListingSectionSix.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

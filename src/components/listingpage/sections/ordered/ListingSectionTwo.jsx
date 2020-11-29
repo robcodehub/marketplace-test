@@ -1,7 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-import currencyFormatter from '../../../../functions/convertCurrency';
+import PropTypes from 'prop-types';
 
 import ListingSummary from '../specific/ListingSummary.jsx';
 
@@ -14,3 +12,7 @@ export default function ListingSectionTwo({ listing }) {
     </ListingSectionTemplate>
   );
 }
+
+ListingSectionTwo.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

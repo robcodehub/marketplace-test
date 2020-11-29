@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import OpportunitiesBox from '../../listingboxes/OpportunitiesBox.jsx';
 import RisksBox from '../../listingboxes/RisksBox.jsx';
@@ -14,3 +14,7 @@ export default function ListingSectionThree({ listing }) {
     </ListingSectionTemplate>
   );
 }
+
+ListingSectionThree.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};
