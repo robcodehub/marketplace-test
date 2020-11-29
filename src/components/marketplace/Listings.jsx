@@ -16,16 +16,12 @@ export const ListingsHome = () => {
   const [allListings, setAllListings] = useContext(AllListingsContext);
 
   useEffect(() => {
-    if (allListings[0] === undefined && allListings[0] === 'loading') {
-      axios
-        .get(
-          'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest'
-        )
-        .then((response) => {
-          setAllListings([...response.data.data.listings]);
-        });
-    }
-  }, [allListings, setAllListings]);
+    axios
+      .get('https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest')
+      .then((response) => {
+        setAllListings([...response.data.data.listings]);
+      });
+  }, []);
 
   return allListings[0] !== undefined && allListings[0] !== 'loading' ? (
     <div>

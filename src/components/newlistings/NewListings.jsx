@@ -18,9 +18,7 @@ export const NewListings = () => {
   useEffect(() => {
     if (allNewListings === undefined || allNewListings[0] === 'loading') {
       axios
-        .get(
-          'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings'
-        )
+        .get('https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings')
         .then((response) => {
           setAllNewListings([...response.data.data.listings]);
         });
