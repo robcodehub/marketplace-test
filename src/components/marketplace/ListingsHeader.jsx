@@ -39,19 +39,15 @@ const BusinessHeadings = () => {
       `On Click Running with ${orderByType} and ${ascOrDesc}. currentSortType = ${currentSortType}`
     );
 
-    axios
-      .get(
-        `https://cors-anywhere.herokuapp.com/https://api.empireflippers.com/api/v1/listings/list?sort=${orderByType}&order=${ascOrDesc}`
-      )
-      .then((response) => {
-        setAllListings([...response.data.data.listings]);
+    axios.get(`/api/listings/${orderByType}/${ascOrDesc}`).then((response) => {
+      setAllListings([...response.data.data.listings]);
 
-        if (ascOrDesc === 'asc') {
-          setAscOrDesc('desc');
-        } else {
-          setAscOrDesc('asc');
-        }
-      });
+      if (ascOrDesc === 'asc') {
+        setAscOrDesc('desc');
+      } else {
+        setAscOrDesc('asc');
+      }
+    });
   };
 
   return (
@@ -83,7 +79,7 @@ const BusinessHeadings = () => {
 
 const ListingsHeader = () => {
   return (
-    <div>
+    <div key="headerlist">
       <RowHeadings>
         <BusinessHeadings />
       </RowHeadings>

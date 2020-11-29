@@ -15,20 +15,14 @@ export default function OtherInfoBox({ listing }) {
     <OtherInfoBoxLayout>
       <h2>Other Information</h2>
       <ListStyle>
-        <li>Work Required Per Week: {listing.hours_worked_per_week} Hours</li>
-        <li>Private Blog Network(PBN): {listing.uses_pbn ? 'Yes' : 'No'}</li>
-        <li>
-          Domain Type:{' '}
-          {listing.sites.map((site) => {
-            return <>.{site.domain_type}</>;
-          })}
+        <li key="workrequired">Work Required Per Week: {listing.hours_worked_per_week} Hours</li>
+        <li key="pbn">Private Blog Network(PBN): {listing.uses_pbn ? 'Yes' : 'No'}</li>
+        <li key="domain">
+          Main Domain Type: {`.${listing.sites[0].domain_type}` || 'See Description'}
         </li>
 
-        <li>
-          Platform:{' '}
-          {listing.sites.map((site) => {
-            return <>{site.platform}</>;
-          })}
+        <li key="platform">
+          Main Platform: {listing.sites[0].platform || 'See Listing Description'}
         </li>
       </ListStyle>
     </OtherInfoBoxLayout>

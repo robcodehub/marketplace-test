@@ -24,17 +24,17 @@ function App() {
   // Context for all listings if required
   // const [allListings, setAllListings] = useContext(AllListingsContext);
 
-  useEffect(() => {
-    if (allNewListings[0] === 'loading' || undefined) {
-      axios
-        .get(
-          'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings'
-        )
-        .then((response) => {
-          setAllNewListings([...response.data.data.listings]);
-        });
-    }
-  }, [setAllNewListings]);
+  // useEffect(() => {
+  //   if (allNewListings[0] === 'loading' || undefined) {
+  //     axios
+  //       .get(
+  //         'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings'
+  //       )
+  //       .then((response) => {
+  //         setAllNewListings([...response.data.data.listings]);
+  //       });
+  //   }
+  // }, [setAllNewListings]);
 
   return (
     <AppDiv>

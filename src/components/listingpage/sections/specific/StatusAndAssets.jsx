@@ -48,7 +48,7 @@ export default function StatusAndAssets({ listing }) {
       <h2>Assets Included in the Sale</h2>
       <ListStyle>
         {listing.assets_included.map((asset) => {
-          return <li>{asset}</li>;
+          return <li key={asset}>{asset}</li>;
         })}
       </ListStyle>
       {listing.has_trademark ? <TrademarkIcon /> : <></>}
