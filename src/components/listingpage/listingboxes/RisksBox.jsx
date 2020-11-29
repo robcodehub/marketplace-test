@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { ListStyle } from '../templates/ListStyles.js';
@@ -14,9 +15,13 @@ export default function RisksBox({ listing }) {
       <h2>Risks</h2>
       <ListStyle>
         {listing.risks.map((risk) => {
-          return <li>{risk}</li>;
+          return <li key={risk}>{risk}</li>;
         })}
       </ListStyle>
     </RisksBoxLayout>
   );
 }
+
+RisksBox.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

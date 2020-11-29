@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import WorkSkillsBox from '../../listingboxes/WorkSkillsBox.jsx';
 import SocialMediaBox from '../../listingboxes/SocialMediaBox.jsx';
@@ -14,3 +14,7 @@ export default function ListingSectionFour({ listing }) {
     </ListingSectionTemplate>
   );
 }
+
+ListingSectionFour.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

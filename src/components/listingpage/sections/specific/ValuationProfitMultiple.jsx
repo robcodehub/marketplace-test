@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import currencyFormatter from '../../../../functions/convertCurrency';
@@ -23,3 +24,7 @@ export default function ValuationProfitMultiple({ listing }) {
     </ValuationProfitMultipleStyles>
   );
 }
+
+ValuationProfitMultiple.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

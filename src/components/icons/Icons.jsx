@@ -39,6 +39,11 @@ export const RightArrowIcon = styled(RightArrowAlt)`
   width: 2em;
 `;
 
+export const UsdHandIcon = styled(HandHoldingUsd)`
+  height: 2rem;
+  width: 2rem;
+`;
+
 export default function Icons() {
   return <></>;
 }

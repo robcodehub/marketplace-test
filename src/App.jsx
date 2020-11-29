@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 import axios from 'axios';
 
@@ -12,7 +12,7 @@ import ListingPage from './components/listingpage/ListingPage.jsx';
 
 import NavBar from './components/navbar/NavBar.jsx';
 
-import { NewListingsContext, AllListingsContext } from './context/ListingsContext.jsx';
+import { NewListingsContext } from './context/ListingsContext.jsx';
 
 const AppDiv = styled.div`
   text-align: center;
@@ -21,7 +21,8 @@ const AppDiv = styled.div`
 function App() {
   const [allNewListings, setAllNewListings] = useContext(NewListingsContext);
 
-  const [allListings, setAllListings] = useContext(AllListingsContext);
+  // Context for all listings if required
+  // const [allListings, setAllListings] = useContext(AllListingsContext);
 
   useEffect(() => {
     if (allNewListings[0] === 'loading' || undefined) {

@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 import axios from 'axios';
 
 import styled from 'styled-components';
-
-import ListingsHeader from './ListingsHeader.jsx';
-import BusinessListingRow, { BusinessRow } from './BusinessListingRow.jsx';
 
 import { AllListingsContext } from '../../context/ListingsContext.jsx';
 
@@ -19,9 +16,7 @@ export const ListingsHome = () => {
   const [allListings, setAllListings] = useContext(AllListingsContext);
 
   useEffect(() => {
-    if (allListings[0] !== undefined && allListings[0] !== 'loading') {
-      console.log('allListings', allListings);
-    } else {
+    if (allListings[0] === undefined && allListings[0] === 'loading') {
       axios
         .get(
           'https://cors-anywhere.herokuapp.com/https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest'

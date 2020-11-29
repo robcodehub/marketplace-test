@@ -1,38 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
 import {
-  NewListingsContext,
   AllListingsContext,
   SortListingOrderContext,
   SortListingTypeContext,
 } from '../../context/ListingsContext.jsx';
 
-const media = {
-  xs: (styles) => `
-    @media only screen and (max-width: 480px) {
-      ${styles}
-  }
-  `,
-};
+import Col from './templates/ColTemplate';
 
-export const Col = styled.div`
-  flex: ${(props) => props.size};
-  ${(props) => props.collapse && media[props.collapse](`display: none;`)};
-  color: ${(props) => props.color || '#000'};
+export const Grid = styled.div`
+  font-family: 'Helvetica';
+`;
 
-  a {
-    color: ${(props) => props.color || '#000'};
-    text-decoration: none;
-  }
-
-  &:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 20%;
-    text-decoration-color: #f5a622;
-    cursor: pointer;
-  }
+export const RowHeadings = styled.div`
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1.9rem;
+  background-color: #3c79cb;
+  font-family: 'Helvetica';
+  font-size: 1.2em;
+  font-weight: bold;
+  color: ${(props) => props.color || '#fff'};
 `;
 
 const BusinessHeadings = () => {
@@ -89,22 +80,6 @@ const BusinessHeadings = () => {
     </>
   );
 };
-
-export const Grid = styled.div`
-  font-family: 'Helvetica';
-`;
-
-export const RowHeadings = styled.div`
-  display: flex;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  margin-top: 1.9rem;
-  background-color: #3c79cb;
-  font-family: 'Helvetica';
-  font-size: 1.2em;
-  font-weight: bold;
-  color: ${(props) => props.color || '#fff'};
-`;
 
 const ListingsHeader = () => {
   return (

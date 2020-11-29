@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { ListStyle } from '../templates/ListStyles.js';
@@ -15,9 +16,13 @@ export default function WorkSkillsBox({ listing }) {
       <h2>Work {'& '} Skills Required</h2>
       <ListStyle>
         {listing.work_required.map((skill) => {
-          return <li>{skill}</li>;
+          return <li key={skill}>{skill}</li>;
         })}
       </ListStyle>
     </WorkSkillsBoxLayout>
   );
 }
+
+WorkSkillsBox.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};

@@ -1,7 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-import currencyFormatter from '../../../../functions/convertCurrency';
+import PropTypes from 'prop-types';
 
 import ListNumRevAndRange from '../specific/ListNumRevAndRange.jsx';
 import ValuationProfitMultiple from '../specific/ValuationProfitMultiple.jsx';
@@ -18,3 +16,7 @@ export default function ListingSectionOne({ listing }) {
     </ListingSectionTemplate>
   );
 }
+
+ListingSectionOne.propTypes = {
+  listing: PropTypes.objectOf(PropTypes.any).isRequired,
+};
