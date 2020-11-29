@@ -11,20 +11,14 @@ const ListingPage = () => {
 
   const { id } = useParams();
   useEffect(() => {
-    axios
-      .get(
-        `https://cors-anywhere.herokuapp.com/https://api.empireflippers.com/api/v1/listings/list?listing_number=${id}`
-      )
-      .then((response) => {
-        setBusinessListings([...response.data.data.listings]);
-      });
+    axios.get(`/api/listing/${id}`).then((response) => {
+      setBusinessListings([...response.data.data.listings]);
+    });
   }, []);
 
   return (
-    <div>
-      <div>
-        <BusinessDetails listings={businessListings} />
-      </div>
+    <div key="businesslistings">
+      <BusinessDetails listings={businessListings} />
     </div>
   );
 };

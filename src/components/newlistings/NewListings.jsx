@@ -17,17 +17,15 @@ export const NewListings = () => {
 
   useEffect(() => {
     if (allNewListings === undefined || allNewListings[0] === 'loading') {
-      axios
-        .get('https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings')
-        .then((response) => {
-          setAllNewListings([...response.data.data.listings]);
-        });
+      axios.get('/api/newlistings').then((response) => {
+        setAllNewListings([...response.data.data.listings]);
+      });
     }
   }, [allNewListings, setAllNewListings]);
 
   return allNewListings[0] !== undefined && allNewListings[0] !== 'loading' ? (
-    <div>
-      <div>
+    <div key="newlistings">
+      <div key="nestednewlistings">
         <h1>Our Latest Listings</h1>
         <h3>Every Monday we publish new businesses for sale on our marketplace</h3>
         <h2>{allNewListings.length || 0} New Listings Published </h2>
@@ -35,7 +33,7 @@ export const NewListings = () => {
       <ListingDisplay listings={allNewListings} />
     </div>
   ) : (
-    <div>
+    <div key="loadingnewlistings">
       <h2> Loading Listings....</h2>
     </div>
   );

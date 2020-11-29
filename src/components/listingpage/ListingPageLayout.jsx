@@ -27,15 +27,15 @@ const BusinessDetails = ({ listings }) => {
     return (
       <>
         <LayoutGrid>
-          <ListingHeader listing={listing} />
-          <UnlockListing />
-          <ListingSectionOne listing={listing} />
-          <ListingSectionTwo listing={listing} />
-          <ListingSectionThree listing={listing} />
-          <ListingSectionFour listing={listing} />
-          <ListingSectionFive listing={listing} />
-          <ListingSectionSix listing={listing} />
-          <FaqSection />
+          <ListingHeader listing={listing} key="listingheader" />
+          <UnlockListing key="unlock" />
+          <ListingSectionOne listing={listing} key="sectionone" />
+          <ListingSectionTwo listing={listing} key="sectiontwo" />
+          <ListingSectionThree listing={listing} key="sectionthree" />
+          <ListingSectionFour listing={listing} key="sectionfour" />
+          <ListingSectionFive listing={listing} key="sectionfive" />
+          <ListingSectionSix listing={listing} key="sectionsix" />
+          <FaqSection key="faq" />
         </LayoutGrid>
       </>
     );
