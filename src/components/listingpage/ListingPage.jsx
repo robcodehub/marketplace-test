@@ -5,18 +5,18 @@ import axios from 'axios';
 
 import styled from 'styled-components';
 
-import ListingHeader from './ListingHeader.jsx';
-import UnlockListing from './UnlockListing.jsx';
-import ListingSummary from './ListingSummary.jsx';
+import ListingHeader from './sections/specific/ListingHeader.jsx';
+import UnlockListing from './sections/specific/UnlockListing.jsx';
+import ListingSummary from './sections/specific/ListingSummary.jsx';
 
 // Individual Page Sections
-import ListingSectionOne from './sections/ListingSectionOne.jsx';
-import ListingSectionTwo from './sections/ListingSectionTwo.jsx';
-import ListingSectionThree from './sections/ListingSectionThree.jsx';
-import ListingSectionFour from './sections/ListingSectionFour.jsx';
-import ListingSectionFive from './sections/ListingSectionFive.jsx';
-import ListingSectionSix from './sections/ListingSectionSix.jsx';
-import FaqSection from './sections/FaqSection.jsx';
+import ListingSectionOne from './sections/ordered/ListingSectionOne.jsx';
+import ListingSectionTwo from './sections/ordered/ListingSectionTwo.jsx';
+import ListingSectionThree from './sections/ordered/ListingSectionThree.jsx';
+import ListingSectionFour from './sections/ordered/ListingSectionFour.jsx';
+import ListingSectionFive from './sections/ordered/ListingSectionFive.jsx';
+import ListingSectionSix from './sections/ordered/ListingSectionSix.jsx';
+import FaqSection from './sections/specific/FaqSection.jsx';
 
 const LayoutGrid = styled.div`
   display: grid;
@@ -40,9 +40,8 @@ const ListingPage = () => {
   }, []);
 
   const BusinessDetails = ({ listings }) => {
-    if (listings.length !== 0) {
+    if (listings.length !== 0 && listings.length !== undefined) {
       const listing = listings[0];
-
       return (
         <>
           <LayoutGrid>

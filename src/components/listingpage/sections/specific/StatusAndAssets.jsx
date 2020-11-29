@@ -8,21 +8,21 @@ import {
   SaleIcon,
   HandshakeIcon,
   RightArrowIcon,
-} from '../../icons/Icons.jsx';
+} from '../../../icons/Icons.jsx';
 
-import currencyFormatter from '../../../functions/convertCurrency';
+import currencyFormatter from '../../../../functions/convertCurrency';
 
-import { ListStyle } from './OtherInfoSection';
+import { ListStyle } from '../../templates/ListStyles.js';
 
-const RightLayoutStyles = styled.div`
+const StatusAndAssetsStyles = styled.div`
   grid-column-start: 3;
   grid-column-end: span 2;
   border-left: 1px solid #000;
 `;
 
-export default function RightLayout({ listing }) {
+export default function StatusAndAssets({ listing }) {
   return (
-    <RightLayoutStyles>
+    <StatusAndAssetsStyles>
       <h2>
         Status:{' '}
         {listing.listing_status.toLowerCase() === 'new listing' ? (
@@ -54,6 +54,6 @@ export default function RightLayout({ listing }) {
         })}
       </ListStyle>
       {listing.has_trademark ? <TrademarkIcon /> : <></>}
-    </RightLayoutStyles>
+    </StatusAndAssetsStyles>
   );
 }

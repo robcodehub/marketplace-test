@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ListStyle } from '../OtherInfoSection.js';
+import { ListStyle } from '../templates/ListStyles.js';
 
 const SellerSupportBoxLayout = styled.div`
   grid-column-start: 1;

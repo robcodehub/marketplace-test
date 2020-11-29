@@ -13,11 +13,4 @@ const OtherInfoSection = styled.div`
   border-top: ${(props) => props.bordertop || '1px solid #848a93'};
 `;
 
-export const ListStyle = styled.ul`
-  list-style-type: none;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  line-height: 1.6;
-`;
-
 export default OtherInfoSection;

@@ -39,15 +39,12 @@ function App() {
     <AppDiv>
       <Router>
         <NavBar />
-        {/* <ListingsContext.Provider value={(allListings, setAllListings)}>
-          <NewListingsContext.Provider value={(newListingsUpdate, setNewListingsUpdate)}> */}
+
         <Switch>
           <Route path="/listing/:id" component={ListingPage} />
           <Route path="/newlistings" component={NewListings} />
           <Route path="/" component={ListingsHome} />
         </Switch>
-        {/* </NewListingsContext.Provider>
-        </ListingsContext.Provider> */}
       </Router>
     </AppDiv>
   );

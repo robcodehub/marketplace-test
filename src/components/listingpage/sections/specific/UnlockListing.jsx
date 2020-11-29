@@ -2,9 +2,9 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { ButtonTemplate } from './ButtonTemplate';
+import ButtonTemplate from '../../templates/ButtonTemplate';
 
-import { RightArrowIcon } from '../icons/Icons.jsx';
+import { RightArrowIcon } from '../../../icons/Icons.jsx';
 
 const UnlockLayout = styled.div`
   grid-row-start: 2;

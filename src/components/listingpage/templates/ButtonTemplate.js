@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonTemplate = styled.button`
+const ButtonTemplate = styled.button`
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 1.2rem;
@@ -14,3 +14,5 @@ export const ButtonTemplate = styled.button`
   border-radius: 5px;
   margin-bottom: 1rem;
 `;
+
+export default ButtonTemplate;

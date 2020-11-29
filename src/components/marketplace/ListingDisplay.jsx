@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import axios from 'axios';
-
 import styled from 'styled-components';
 
 import ListingsHeader from './ListingsHeader.jsx';
