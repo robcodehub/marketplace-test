@@ -12,5 +12,9 @@ import React from 'react';
 */
 
 export default function Footer() {
-  return <div></div>;
+  return (
+    <div>
+      <p>Copyright</p>
+    </div>
+  );
 }

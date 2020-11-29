@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+
+import {
+  NewListingsContext,
+  AllListingsContext,
+  SortListingOrderContext,
+  SortListingTypeContext,
+} from '../../context/ListingsContext.jsx';
 
 const media = {
   xs: (styles) => `
@@ -18,18 +26,66 @@ export const Col = styled.div`
     color: ${(props) => props.color || '#000'};
     text-decoration: none;
   }
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 20%;
+    text-decoration-color: #f5a622;
+    cursor: pointer;
+  }
 `;
 
 const BusinessHeadings = () => {
+  const [allListings, setAllListings] = useContext(AllListingsContext);
+
+  const [ascOrDesc, setAscOrDesc] = useContext(SortListingOrderContext);
+
+  const [currentSortType, setCurrentSortType] = useContext(SortListingTypeContext);
+
+  const sortListings = (orderByType) => {
+    setCurrentSortType(orderByType);
+    console.log(
+      `On Click Running with ${orderByType} and ${ascOrDesc}. currentSortType = ${currentSortType}`
+    );
+
+    axios
+      .get(
+        `https://cors-anywhere.herokuapp.com/https://api.empireflippers.com/api/v1/listings/list?sort=${orderByType}&order=${ascOrDesc}`
+      )
+      .then((response) => {
+        setAllListings([...response.data.data.listings]);
+
+        if (ascOrDesc === 'asc') {
+          setAscOrDesc('desc');
+        } else {
+          setAscOrDesc('asc');
+        }
+      });
+  };
+
   return (
     <>
-      <Col size={7}>Listing Number</Col>
-      <Col size={7}>Niche</Col>
-      <Col size={7}>Monetization</Col>
-      <Col size={7}>Price</Col>
-      <Col size={7}>Monthly Net Profit</Col>
-      <Col size={7}>Multiple</Col>
-      <Col size={7}>Listing Status</Col>
+      <Col color="#fff" size={7} onClick={() => sortListings('listing_number')}>
+        Listing Number
+      </Col>
+      <Col color="#fff" size={7} onClick={() => sortListings('max_niche')}>
+        Niche
+      </Col>
+      <Col color="#fff" size={7} onClick={() => sortListings('max_monetization')}>
+        Monetization
+      </Col>
+      <Col color="#fff" size={7} onClick={() => sortListings('listing_price')}>
+        Price
+      </Col>
+      <Col color="#fff" size={7} onClick={() => sortListings('average_monthly_net_profit')}>
+        Monthly Net Profit
+      </Col>
+      <Col color="#fff" size={7} onClick={() => sortListings('listing_multiple')}>
+        Multiple
+      </Col>
+      <Col color="#fff" size={7} onClick={() => sortListings('listing_status')}>
+        Listing Status
+      </Col>
     </>
   );
 };

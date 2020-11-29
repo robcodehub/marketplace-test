@@ -1,16 +1,32 @@
 import React, { useContext, useState, createContext } from 'react';
 
+export const AllListingsContext = createContext(null);
 export const NewListingsContext = createContext(null);
 
-const { Provider } = NewListingsContext;
+export const SortListingOrderContext = createContext(null);
+export const SortListingTypeContext = createContext(null);
 
-export const NewListingsProvider = ({ children }) => {
+export const ListingsContextProvider = ({ children }) => {
   const [allNewListings, setAllNewListings] = useState(['loading']);
+  const [allListings, setAllListings] = useState(['loading']);
 
-  return <Provider value={[allNewListings, setAllNewListings]}>{children}</Provider>;
+  const [ascOrDesc, setAscOrDesc] = useState('asc');
+  const [currentSortType, setCurrentSortType] = useState('listing_number');
+
+  return (
+    <AllListingsContext.Provider value={[allListings, setAllListings]}>
+      <NewListingsContext.Provider value={[allNewListings, setAllNewListings]}>
+        <SortListingOrderContext.Provider value={[ascOrDesc, setAscOrDesc]}>
+          <SortListingTypeContext.Provider value={[currentSortType, setCurrentSortType]}>
+            {children}
+          </SortListingTypeContext.Provider>
+        </SortListingOrderContext.Provider>
+      </NewListingsContext.Provider>
+    </AllListingsContext.Provider>
+  );
 };
 
-NewListingsProvider.context = NewListingsContext;
+ListingsContextProvider.context = ListingsContextProvider;
 
 // export function useListings() {
 //   return useContext(ListingsContext);

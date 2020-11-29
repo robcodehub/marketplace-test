@@ -12,7 +12,7 @@ import ListingPage from './components/listingpage/ListingPage.jsx';
 
 import NavBar from './components/navbar/NavBar.jsx';
 
-import { NewListingsContext } from './context/ListingsContext.jsx';
+import { NewListingsContext, AllListingsContext } from './context/ListingsContext.jsx';
 
 const AppDiv = styled.div`
   text-align: center;
@@ -20,6 +20,8 @@ const AppDiv = styled.div`
 
 function App() {
   const [allNewListings, setAllNewListings] = useContext(NewListingsContext);
+
+  const [allListings, setAllListings] = useContext(AllListingsContext);
 
   useEffect(() => {
     if (allNewListings[0] === 'loading' || undefined) {
@@ -37,15 +39,12 @@ function App() {
     <AppDiv>
       <Router>
         <NavBar />
-        {/* <ListingsContext.Provider value={(allListings, setAllListings)}>
-          <NewListingsContext.Provider value={(newListingsUpdate, setNewListingsUpdate)}> */}
+
         <Switch>
           <Route path="/listing/:id" component={ListingPage} />
           <Route path="/newlistings" component={NewListings} />
           <Route path="/" component={ListingsHome} />
         </Switch>
-        {/* </NewListingsContext.Provider>
-        </ListingsContext.Provider> */}
       </Router>
     </AppDiv>
   );

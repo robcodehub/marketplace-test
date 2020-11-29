@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { RightArrowIcon } from '../../../icons/Icons.jsx';
+import { RightArrowIcon } from '../../icons/Icons.jsx';
 
-import { ButtonTemplate } from '../../ButtonTemplate';
+import ButtonTemplate from '../templates/ButtonTemplate';
 
 const SocialMediaBoxLayout = styled.div`
   grid-column-start: 3;
