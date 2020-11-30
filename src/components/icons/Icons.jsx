@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Handshake, CommentsDollar, Trademark, HandHoldingUsd } from '@styled-icons/fa-solid';
-import { RightArrowAlt } from '@styled-icons/boxicons-regular';
+import { RightArrowAlt, UpArrow, DownArrow } from '@styled-icons/boxicons-regular';
 import { BurstSale, BurstNew } from '@styled-icons/foundation';
 
 export const TrademarkIcon = styled(Trademark)`
@@ -12,6 +12,16 @@ export const TrademarkIcon = styled(Trademark)`
   padding: 1rem;
   border-radius: 50%;
   border: solid 4px #3c79cb;
+`;
+
+export const SortUpIcon = styled(UpArrow)`
+  height: 1rem;
+  width: 2rem;
+`;
+
+export const SortDownIcon = styled(DownArrow)`
+  height: 1rem;
+  width: 2rem;
 `;
 
 export const DealIcon = styled(CommentsDollar)`

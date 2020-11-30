@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import {
-  NewIcon,
-  TrademarkIcon,
-  DealIcon,
-  SaleIcon,
-  HandshakeIcon,
-} from '../../../icons/Icons.jsx';
+import { TrademarkIcon } from '../../../icons/Icons.jsx';
+
+import StatusAndIcon from '../generic/StatusHandler.jsx';
 
 import { ListStyle } from '../../templates/ListStyles.js';
 
@@ -22,26 +18,7 @@ export default function StatusAndAssets({ listing }) {
   return (
     <StatusAndAssetsStyles>
       <h2>
-        Status:{' '}
-        {listing.listing_status.toLowerCase() === 'new listing' ? (
-          <>
-            <NewIcon /> {listing.listing_status}{' '}
-          </>
-        ) : listing.listing_status.toLowerCase() === 'for sale' ? (
-          <>
-            <SaleIcon /> {listing.listing_status}{' '}
-          </>
-        ) : listing.listing_status.toLowerCase() === 'pending sold' ? (
-          <>
-            <DealIcon /> {listing.listing_status}{' '}
-          </>
-        ) : listing.listing_status.toLowerCase() === 'sold' ? (
-          <>
-            <HandshakeIcon /> {listing.listing_status}{' '}
-          </>
-        ) : (
-          <>{listing.listing_status}</>
-        )}{' '}
+        Status: <StatusAndIcon listingStatus={listing.listing_status.toLowerCase() || ''} />
       </h2>
       <h2>Business Created</h2>
       <h3>{listing.business_created_at}</h3>
