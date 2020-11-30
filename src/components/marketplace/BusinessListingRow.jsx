@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import { DealIcon, SaleIcon, HandshakeIcon, NewIcon } from '../icons/Icons.jsx';
+import StatusAndIcon from '../listingpage/sections/generic/StatusHandler.jsx';
 
 import Col from './templates/ColTemplate';
 
@@ -31,18 +31,21 @@ export const BusinessRow = styled.div`
 `;
 
 const BusinessListingRow = ({ listing }) => {
+  let listingColor = '#005a87';
+  switch (listing.listing_status.toLowerCase()) {
+    case 'new listing':
+      listingColor = '#f5a622';
+      break;
+    case 'sold':
+      listingColor = '#848a93';
+      break;
+    default:
+      listingColor = '#005a87';
+  }
+
   return (
     <>
-      <Col
-        size={7}
-        color={
-          listing.listing_status.toLowerCase() === 'new listing'
-            ? '#f5a622'
-            : listing.listing_status.toLowerCase() !== 'sold'
-            ? '#005a87'
-            : '#848a93'
-        }
-      >
+      <Col size={7} color={listingColor}>
         <Link to={`/listing/${listing.listing_number}`}>#{listing.listing_number}</Link>
       </Col>
       <Col size={7}>
@@ -55,16 +58,7 @@ const BusinessListingRow = ({ listing }) => {
           {listing.monetizations.length === 0 ? 'Mixed' : listing.monetizations[0].monetization}{' '}
         </Link>
       </Col>
-      <Col
-        size={7}
-        color={
-          listing.listing_status.toLowerCase() === 'new listing'
-            ? '#f5a622'
-            : listing.listing_status.toLowerCase() !== 'sold'
-            ? '#005a87'
-            : '#848a93'
-        }
-      >
+      <Col size={7} color={listingColor}>
         <Link to={`/listing/${listing.listing_number}`}>
           {currencyFormatter.format(listing.listing_price)}
         </Link>
@@ -81,25 +75,7 @@ const BusinessListingRow = ({ listing }) => {
       </Col>
       <Col size={7}>
         <Link to={`/listing/${listing.listing_number}`}>
-          {listing.listing_status.toLowerCase() === 'new listing' ? (
-            <>
-              <NewIcon /> {listing.listing_status}{' '}
-            </>
-          ) : listing.listing_status.toLowerCase() === 'for sale' ? (
-            <>
-              <SaleIcon /> {listing.listing_status}{' '}
-            </>
-          ) : listing.listing_status.toLowerCase() === 'pending sold' ? (
-            <>
-              <DealIcon /> {listing.listing_status}{' '}
-            </>
-          ) : listing.listing_status.toLowerCase() === 'sold' ? (
-            <>
-              <HandshakeIcon /> {listing.listing_status}{' '}
-            </>
-          ) : (
-            <>{listing.listing_status}</>
-          )}
+          <StatusAndIcon listingStatus={listing.listing_status || ''} />
         </Link>
       </Col>
     </>

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 
 import axios from 'axios';
 
@@ -12,23 +12,36 @@ export const Grid = styled.div`
   font-family: 'Helvetica';
 `;
 
+const LoadingDiv = styled.div`
+  margin-top: 3rem;
+  padding-top: 3rem;
+`;
+
 export const ListingsHome = () => {
   const [allListings, setAllListings] = useContext(AllListingsContext);
 
-  useEffect(() => {
-    axios.get('/api/alllistings').then((response) => {
-      setAllListings([...response.data.data.listings]);
-    });
-  }, []);
+  const [loading, setLoading] = useState(true);
 
-  return allListings[0] !== undefined && allListings[0] !== 'loading' ? (
+  useEffect(() => {
+    if (allListings === undefined || allListings[0].listing_status === 'loading')
+      axios.get('/api/allsalelistings').then((response) => {
+        setAllListings([...response.data.data.listings]);
+        setLoading(false);
+      });
+
+    if (allListings[0].listing_status !== 'loading') {
+      setLoading(false);
+    }
+  }, [allListings, setAllListings]);
+
+  return allListings.length > 1 && loading === false ? (
     <div key="listings">
       <h2>Listings</h2>
-      <ListingDisplay listings={allListings} />
+      <ListingDisplay listings={allListings} loading={loading} />
     </div>
   ) : (
-    <div key="loadinglistings">
-      <h2> Loading Listings....</h2>
-    </div>
+    <LoadingDiv>
+      <h1>Loading Listings...</h1>
+    </LoadingDiv>
   );
 };

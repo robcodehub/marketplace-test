@@ -16,14 +16,18 @@ export const NewListings = () => {
   const [allNewListings, setAllNewListings] = useContext(NewListingsContext);
 
   useEffect(() => {
-    if (allNewListings === undefined || allNewListings[0] === 'loading') {
+    if (allNewListings === undefined || allNewListings[0].listing_status === 'loading') {
       axios.get('/api/newlistings').then((response) => {
         setAllNewListings([...response.data.data.listings]);
       });
     }
   }, [allNewListings, setAllNewListings]);
 
-  return allNewListings[0] !== undefined && allNewListings[0] !== 'loading' ? (
+  return allNewListings[0].listing_status === 'loading' || allNewListings === undefined ? (
+    <div key="loadingnewlistings">
+      <h2> Loading Listings....</h2>
+    </div>
+  ) : (
     <div key="newlistings">
       <div key="nestednewlistings">
         <h1>Our Latest Listings</h1>
@@ -31,10 +35,6 @@ export const NewListings = () => {
         <h2>{allNewListings.length || 0} New Listings Published </h2>
       </div>
       <ListingDisplay listings={allNewListings} />
-    </div>
-  ) : (
-    <div key="loadingnewlistings">
-      <h2> Loading Listings....</h2>
     </div>
   );
 };

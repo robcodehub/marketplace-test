@@ -5,10 +5,10 @@ const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.get('/api/newlistings', async (req, res) => {
+app.get('/api/alllistings', async (req, res) => {
   try {
     await axios
-      .get('https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings')
+      .get('https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest')
       .then((response) => {
         res.send(response.data);
       });
@@ -17,10 +17,24 @@ app.get('/api/newlistings', async (req, res) => {
   }
 });
 
-app.get('/api/alllistings', async (req, res) => {
+app.get('/api/allsalelistings', async (req, res) => {
   try {
     await axios
-      .get('https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest')
+      .get(
+        'https://api.empireflippers.com/api/v1/listings/list?page=1&limit=90&listing_status=For%20Sale'
+      )
+      .then((response) => {
+        res.send(response.data);
+      });
+  } catch (error) {
+    res.send({ msg: 'An error has occured' });
+  }
+});
+
+app.get('/api/newlistings', async (req, res) => {
+  try {
+    await axios
+      .get('https://us-central1-marketplace-test-6a376.cloudfunctions.net/efNewListings')
       .then((response) => {
         res.send(response.data);
       });
@@ -48,7 +62,9 @@ app.get('/api/listings/:sortType/:order', async (req, res) => {
 
   try {
     await axios
-      .get(`https://api.empireflippers.com/api/v1/listings/list?sort=${sortType}&order=${order}`)
+      .get(
+        `https://api.empireflippers.com/api/v1/listings/list?sort=${sortType}&order=${order}&page=1&limit=90&listing_status=For%20Sale`
+      )
       .then((response) => {
         res.send(response.data);
       });
