@@ -33,5 +33,6 @@
     "no-lone-blocks": "warn",
     "import/prefer-default-export": "warn"
   },
+  "ignorePatterns": ["cypress/*", "node_modules/*", "public/*", "build/*", "config/*", ".vscode/*"],
   "root": true
 }

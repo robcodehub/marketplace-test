@@ -10,8 +10,7 @@ export const Grid = styled.div`
   font-family: 'Helvetica';
 `;
 
-// LoadingDiv probably isn't required on this component
-// This is just included as a conditional rendering fallback
+// Loading Div is just included as a conditional rendering fallback
 const LoadingDiv = styled.div`
   margin-top: 3rem;
   padding-top: 3rem;
