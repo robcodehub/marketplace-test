@@ -27,6 +27,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "server": "nodemon server/server.js",
+    "dev": "concurrently \"nodemon server/server.js\" \"react-scripts start\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open"
