@@ -30,7 +30,8 @@ export const RowHeadings = styled.div`
   color: ${(props) => props.color || '#fff'};
 `;
 
-const BusinessHeadings = ({ sortingInProgress, setSortingInProgress }) => {
+const BusinessHeadings = ({ setSortingInProgress }) => {
+  // eslint-disable-next-line no-unused-vars
   const [allListings, setAllListings] = useContext(AllListingsContext);
 
   const [ascOrDesc, setAscOrDesc] = useContext(SortListingOrderContext);
@@ -44,9 +45,6 @@ const BusinessHeadings = ({ sortingInProgress, setSortingInProgress }) => {
     setSortingInProgress(true);
 
     setCurrentSortType(orderByType);
-    console.log(
-      `On Click Running with ${orderByType} and ${ascOrDesc}. currentSortType = ${currentSortType}`
-    );
 
     // Sort order saved in context to reduce network requests
     // Load time also improved providing a better user experience
@@ -71,7 +69,6 @@ const BusinessHeadings = ({ sortingInProgress, setSortingInProgress }) => {
         });
         // Set sorting in progress to false to remove notification to user
         setSortingInProgress(false);
-        console.log('SORTED LISTINGS ==== ', sortedListings);
       });
     }
 
@@ -80,8 +77,6 @@ const BusinessHeadings = ({ sortingInProgress, setSortingInProgress }) => {
     } else {
       setAscOrDesc('asc');
     }
-
-    console.log('ASCorDesc end of function', ascOrDesc);
   };
 
   const CurrentSortIcon = () => {
@@ -133,18 +128,14 @@ const ListingsHeader = () => {
   return (
     <div key="headerlist">
       <RowHeadings>
-        <BusinessHeadings
-          sortingInProgress={sortingInProgress}
-          setSortingInProgress={setSortingInProgress}
-        />
+        <BusinessHeadings setSortingInProgress={setSortingInProgress} />
       </RowHeadings>
-      {sortingInProgress ? <h3>Sorting Listings....</h3> : null}
+      {sortingInProgress ? <h2>Sorting Listings....</h2> : null}
     </div>
   );
 };
 
 BusinessHeadings.propTypes = {
-  sortingInProgress: PropTypes.bool.isRequired,
   setSortingInProgress: PropTypes.func.isRequired,
 };
 
