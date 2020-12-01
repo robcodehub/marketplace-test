@@ -1,6 +1,8 @@
 {
-  "short_name": "EF Test",
+  "short_name": "EmpireFlippers",
   "name": "Empire Flippers Test Marketplace",
+  "description": "Want to buy an online business with real profit? Empire Flippers has real, verified businesses.",
+  "lang": "en-US",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +10,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "eflogo180.png",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "180x180"
     }
   ],
   "start_url": ".",
   "display": "standalone",
+  "orientation": "portrait",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
