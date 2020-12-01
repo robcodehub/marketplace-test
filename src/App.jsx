@@ -7,7 +7,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 // New Listings Context
-import { NewListingsContext, AllListingsContext } from './context/ListingsContext.jsx';
+import { NewListingsContext } from './context/ListingsContext.jsx';
 
 // Top menu NavBar component
 import NavBar from './components/navbar/NavBar.jsx';
