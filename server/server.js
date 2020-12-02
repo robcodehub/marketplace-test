@@ -12,10 +12,10 @@ app.get('/api/alllistings', async (req, res) => {
     await axios
       .get('https://us-central1-marketplace-test-6a376.cloudfunctions.net/efMarketplaceTest')
       .then((response) => {
-        res.send(response.data);
+        res.status(200).send(response.data);
       });
   } catch (error) {
-    res.send({ msg: 'An error has occured' });
+    res.status(500).send({ msg: 'An error has occured' });
   }
 });
 
@@ -42,10 +42,10 @@ app.get('/api/allsalelistings', async (req, res) => {
         'https://api.empireflippers.com/api/v1/listings/list?page=1&limit=90&listing_status=For%20Sale'
       )
       .then((response) => {
-        res.send(response.data);
+        res.status(200).send(response.data);
       });
   } catch (error) {
-    res.send({ msg: 'An error has occured' });
+    res.status(500).send({ msg: 'An error has occured' });
   }
 });
 
@@ -57,10 +57,10 @@ app.get('/api/listing/:listingId', async (req, res) => {
     await axios
       .get(`https://api.empireflippers.com/api/v1/listings/list?listing_number=${listingNumber}`)
       .then((response) => {
-        res.send(response.data);
+        res.status(200).send(response.data);
       });
   } catch (error) {
-    res.send({ msg: 'An error has occured' });
+    res.status(500).send({ msg: 'An error has occured' });
   }
 });
 
@@ -74,10 +74,10 @@ app.get('/api/listings/:sortType/:order', async (req, res) => {
         `https://api.empireflippers.com/api/v1/listings/list?sort=${sortType}&order=${order}&page=1&limit=90&listing_status=For%20Sale`
       )
       .then((response) => {
-        res.send(response.data);
+        res.status(200).send(response.data);
       });
   } catch (error) {
-    res.send({ msg: 'An error has occured' });
+    res.status(500).send({ msg: 'An error has occured' });
   }
 });
 

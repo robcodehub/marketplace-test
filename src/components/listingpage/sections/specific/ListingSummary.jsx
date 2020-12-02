@@ -9,7 +9,7 @@ const ListingSummaryLayout = styled.div`
 
 export default function ListingSummary({ listing }) {
   return (
-    <ListingSummaryLayout>
+    <ListingSummaryLayout id="listing-summary">
       <h2>Listing Summary</h2>
       {listing.summary.split('\n').map((string) => (
         <p key={string}>{string}</p>

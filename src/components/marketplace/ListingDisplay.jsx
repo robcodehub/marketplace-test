@@ -18,7 +18,7 @@ const LoadingDiv = styled.div`
 
 const ListingDisplay = ({ listings }) => (
   <>
-    <Grid>
+    <Grid id="all-listings">
       <ListingsHeader />
       {listings[0].listing_status !== 'loading' && listings.length > 2 ? (
         listings.map((listing, index) => {

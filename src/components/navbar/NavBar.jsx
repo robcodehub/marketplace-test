@@ -53,7 +53,7 @@ const MenuItems = styled.ul`
 
 export default function NavBar() {
   return (
-    <NavBarStyle>
+    <NavBarStyle id="navbar">
       <MenuItems>
         <li>
           <Link to="/">Home</Link>

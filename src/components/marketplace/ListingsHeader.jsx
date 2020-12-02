@@ -126,7 +126,7 @@ const ListingsHeader = () => {
   // Current listings still displayed to user while sorting
   const [sortingInProgress, setSortingInProgress] = useState(false);
   return (
-    <div key="headerlist">
+    <div key="headerlist" id="business-headings">
       <RowHeadings>
         <BusinessHeadings setSortingInProgress={setSortingInProgress} />
       </RowHeadings>
