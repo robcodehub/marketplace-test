@@ -24,12 +24,12 @@ export const NewListings = () => {
   }, [allNewListings, setAllNewListings]);
 
   return allNewListings[0].listing_status === 'loading' || allNewListings === undefined ? (
-    <div key="loadingnewlistings">
+    <div key="loading-newlistings">
       <h2> Loading Listings....</h2>
     </div>
   ) : (
-    <div key="newlistings">
-      <div key="nestednewlistings">
+    <div key="latest-listings">
+      <div key="new-listings-header" id="new-listings-header">
         <h1>Our Latest Listings</h1>
         <h3>Every Monday we publish new businesses for sale on our marketplace</h3>
         <h2>{allNewListings.length || 0} New Listings Published </h2>

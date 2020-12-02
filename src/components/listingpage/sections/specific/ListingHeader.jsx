@@ -13,7 +13,7 @@ const ListingHeaderLayout = styled.div`
 
 export default function ListingHeader({ listing }) {
   return (
-    <ListingHeaderLayout>
+    <ListingHeaderLayout id="listing-top-info">
       <h1>Niche: {listing.niches[0].niche}</h1>
       <h2>Monetization: {listing.monetizations[0].monetization}</h2>
       <h3>

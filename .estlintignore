@@ -4,4 +4,4 @@ build/
 config/
 cypress/
 .vscode/
-
+src/__tests__/
