@@ -1,11 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
-
 import axios from 'axios';
-
 import styled from 'styled-components';
 
 import { AllListingsContext } from '../../context/ListingsContext.jsx';
-
 import ListingDisplay from './ListingDisplay.jsx';
 
 export const Grid = styled.div`

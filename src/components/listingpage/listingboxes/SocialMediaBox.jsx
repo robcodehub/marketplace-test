@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { RightArrowIcon } from '../../icons/Icons.jsx';
-
 import ButtonTemplate from '../templates/ButtonTemplate';
 
 const SocialMediaBoxLayout = styled.div`

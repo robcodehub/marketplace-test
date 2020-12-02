@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 
 import StatusAndIcon from '../listingpage/sections/generic/StatusHandler.jsx';
-
 import Col from './templates/ColTemplate';
 
 import currencyFormatter from '../../functions/convertCurrency';

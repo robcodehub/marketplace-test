@@ -19,18 +19,19 @@ To the run the project, follow the below steps:
 In a new terminal, run the below script to start the app:
 `npm run start`
 
+There is also the option to run `npm run dev` which will run both the server and react scripts concurrently
+
 ### 4) View the app in development mode
 
 The app should now be running in development mode
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The page will reload if you make edits. You will also see any lint errors in the console.
 
-### Cypress Tests
+### 5) Cypress Tests
 
 To run Cypress tests, open a new terminal and run the below command:
 `npm run cypress:open`
 
-Tests for projects are in the `integration` folder in the `test_specs.js` file
+Tests for projects can be found in the `cypress/integration/__tests__` folder
