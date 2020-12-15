@@ -1,10 +1,10 @@
-// import React from 'react';
 import styled from 'styled-components';
 
 import { Handshake, CommentsDollar, Trademark, HandHoldingUsd } from '@styled-icons/fa-solid';
 import { RightArrowAlt, UpArrow, DownArrow } from '@styled-icons/boxicons-regular';
 import { BurstSale, BurstNew } from '@styled-icons/foundation';
 
+// StyledIcon reusable component for icons
 export const StyledIcon = (icon) => styled(icon)`
   height: ${(props) => props.height || '2rem'};
   width: ${(props) => props.width || '2rem'};
@@ -33,9 +33,5 @@ export const TrademarkIcon = styled(Trademark)`
   border: solid 4px #3c79cb;
 `;
 
-// // Default fragment export
-// export default function Icons() {
-//   return <></>;
-// }
-
+// Default export of StyledIcon
 export default StyledIcon;
