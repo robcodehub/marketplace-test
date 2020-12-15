@@ -15,7 +15,7 @@ export default function SocialMediaBox() {
       <h2>Social Media Channels</h2>
       <ButtonTemplate>
         Unlock Listing
-        <RightArrowIcon />
+        <RightArrowIcon color="#fff" />
       </ButtonTemplate>
     </SocialMediaBoxLayout>
   );

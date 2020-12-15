@@ -18,7 +18,7 @@ export default function StatusAndAssets({ listing }) {
   return (
     <StatusAndAssetsStyles>
       <h2>
-        Status: <StatusAndIcon listingStatus={listing.listing_status.toLowerCase() || ''} />
+        Status: <StatusAndIcon listingStatus={listing.listing_status || ''} />
       </h2>
       <h2>Business Created</h2>
       <h3>{listing.business_created_at}</h3>

@@ -1,10 +1,29 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import { Handshake, CommentsDollar, Trademark, HandHoldingUsd } from '@styled-icons/fa-solid';
 import { RightArrowAlt, UpArrow, DownArrow } from '@styled-icons/boxicons-regular';
 import { BurstSale, BurstNew } from '@styled-icons/foundation';
 
+// StyledIcon reusable component for icons
+export const StyledIcon = (icon) => styled(icon)`
+  height: ${(props) => props.height || '2rem'};
+  width: ${(props) => props.width || '2rem'};
+  color: ${(props) => props.color || '#000'};
+`;
+
+// Arrow icons for sorting listings and buttons
+export const SortUpIcon = StyledIcon(UpArrow);
+export const SortDownIcon = StyledIcon(DownArrow);
+export const RightArrowIcon = StyledIcon(RightArrowAlt);
+
+// Icons for listing status
+export const DealIcon = StyledIcon(CommentsDollar);
+export const HandshakeIcon = StyledIcon(Handshake);
+export const SaleIcon = StyledIcon(BurstSale);
+export const NewIcon = StyledIcon(BurstNew);
+export const UsdHandIcon = StyledIcon(HandHoldingUsd);
+
+// Trademark icon on individual listing pages
 export const TrademarkIcon = styled(Trademark)`
   height: 4rem;
   width: 4rem;
@@ -14,46 +33,5 @@ export const TrademarkIcon = styled(Trademark)`
   border: solid 4px #3c79cb;
 `;
 
-export const SortUpIcon = styled(UpArrow)`
-  height: 1rem;
-  width: 2rem;
-`;
-
-export const SortDownIcon = styled(DownArrow)`
-  height: 1rem;
-  width: 2rem;
-`;
-
-export const DealIcon = styled(CommentsDollar)`
-  height: 2rem;
-  width: 2rem;
-`;
-
-export const HandshakeIcon = styled(Handshake)`
-  height: 2rem;
-  width: 2rem;
-`;
-
-export const SaleIcon = styled(BurstSale)`
-  height: 2rem;
-  width: 2rem;
-`;
-
-export const NewIcon = styled(BurstNew)`
-  color: green;
-`;
-
-export const RightArrowIcon = styled(RightArrowAlt)`
-  color: ${(props) => props.color || '#FFF'};
-  height: 2em;
-  width: 2em;
-`;
-
-export const UsdHandIcon = styled(HandHoldingUsd)`
-  height: 2rem;
-  width: 2rem;
-`;
-
-export default function Icons() {
-  return <></>;
-}
+// Default export of StyledIcon
+export default StyledIcon;
