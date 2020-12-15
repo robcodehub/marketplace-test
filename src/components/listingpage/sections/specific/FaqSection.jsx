@@ -18,7 +18,7 @@ export default function FaqSection() {
       <h3>This content is only accessible by unlocking this listing</h3>
       <ButtonTemplate>
         Unlock Listing
-        <RightArrowIcon />
+        <RightArrowIcon color="#fff" />
       </ButtonTemplate>
     </ListingSectionTemplate>
   );

@@ -24,10 +24,10 @@ export default function UnlockListing() {
         Unlock a listing for full access to the URL, Google Analytic, Profit and Loss Statement,
         etc.
         <ButtonTemplate>
-          Buy Now <RightArrowIcon />
+          Buy Now <RightArrowIcon color="#fff" />
         </ButtonTemplate>{' '}
         <ButtonTemplate color="#f5a622">
-          Unlock Listing <RightArrowIcon />
+          Unlock Listing <RightArrowIcon color="#fff" />
         </ButtonTemplate>
       </h3>
     </UnlockLayout>

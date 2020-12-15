@@ -30,7 +30,11 @@ function App() {
   const [allNewListings, setAllNewListings] = useContext(NewListingsContext);
 
   useEffect(() => {
-    if (allNewListings === undefined || allNewListings[0].listing_status === 'loading') {
+    if (
+      allNewListings === undefined ||
+      allNewListings[0].listing_status === 'loading' ||
+      allNewListings[0] === undefined
+    ) {
       axios.get('/api/newlistings').then((response) => {
         setAllNewListings([...response.data.data.listings]);
       });

@@ -81,10 +81,10 @@ const BusinessHeadings = ({ setSortingInProgress }) => {
 
   const CurrentSortIcon = () => {
     if (ascOrDesc === 'asc') {
-      return <SortUpIcon />;
+      return <SortUpIcon height="1em" color="#fff" />;
     }
 
-    return <SortDownIcon />;
+    return <SortDownIcon height="1em" color="#fff" />;
   };
 
   return (
